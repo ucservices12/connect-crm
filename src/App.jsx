@@ -51,6 +51,8 @@ import CurrentSalesPayment from "./pages/sales/current-sales/CurrentSalesPayment
 import { CurrentSalesCustomers } from "./pages/sales/current-sales/CurrentSalesCustomers";
 import CurrentSalesInvoices from "./pages/sales/current-sales/CurrentSalesInvoices";
 import { CurrentSalesStatements } from "./pages/sales/current-sales/CurrentSalesStatements";
+import { CreateInvoice } from "./pages/sales/current-sales/CreateInvoice";
+import { EditInvoice } from "./pages/sales/current-sales/Editinvoice";
 
 function Page({ title }) {
   return (
@@ -122,6 +124,8 @@ const currentSalesRoute = [
   { path: "statements", element: <CurrentSalesStatements /> },
   { path: "customers", element: <CurrentSalesCustomers /> },
   { path: "invoices", element: <CurrentSalesInvoices /> },
+  { path: "invoices/create", element: <CreateInvoice /> },
+  { path: "invoices/update/:id", element: <EditInvoice /> },
 ];
 
 export default function App() {

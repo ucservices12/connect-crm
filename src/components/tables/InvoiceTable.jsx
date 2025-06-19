@@ -9,11 +9,11 @@ import {
 import { Pencil, Trash, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IoPersonSharp } from "react-icons/io5";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function InvoiceTable({ invoices }) {
   const location = useLocation();
-  
+
   return (
     <div className="border rounded-lg overflow-hidden">
       <Table>
@@ -51,9 +51,11 @@ export function InvoiceTable({ invoices }) {
               <TableCell>₹{invoice.amount.toLocaleString("en-IN")}</TableCell>
               {location.pathname !== "/sales-board" && (
                 <TableCell className="flex justify-center">
-                  <Button variant="ghost" size="icon">
-                    <Pencil />
-                  </Button>
+                  <Link to={`/current-sales/invoices/update/${invoice.id}`}>
+                    <Button variant="ghost" size="icon">
+                      <Pencil />
+                    </Button>
+                  </Link>
                   <Button variant="ghost" size="icon">
                     <Trash />
                   </Button>

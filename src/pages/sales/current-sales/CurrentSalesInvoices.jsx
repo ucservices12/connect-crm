@@ -8,7 +8,7 @@ import { TypographyH2 } from "@/components/custom/Typography";
 import { FilterPanel } from "@/components/FilterPanel";
 import { InvoiceTable } from "@/components/tables/InvoiceTable";
 import SalesSummaryCard from "@/components/SalesSummuryCard";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // Function to get summary data
 function getSummaryData() {
@@ -124,10 +124,12 @@ export default function CurrentSalesInvoices() {
       <div className="flex justify-between items-center">
         <TypographyH2>Invoices</TypographyH2>
         {location.pathname === "/current-sales/invoices" && (
-          <Button>
-            <Plus />
-            Create
-          </Button>
+          <Link to="/current-sales/invoices/create">
+            <Button>
+              <Plus />
+              Create
+            </Button>
+          </Link>
         )}
       </div>
 

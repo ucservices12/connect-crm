@@ -57,10 +57,12 @@ export default function SalesDashboard() {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          <Button size="sm" variant="default" className="w-full">
-            <Plus />
-            New Invoice
-          </Button>
+          <Link to="/current-sales/invoices/create" className="w-full">
+            <Button size="sm" variant="default" className="w-full">
+              <Plus />
+              New Invoice
+            </Button>
+          </Link>
           <Button size="sm" variant="default" className="w-full">
             <Plus />
             New Estimate
