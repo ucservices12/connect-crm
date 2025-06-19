@@ -28,7 +28,7 @@ function getSectionTitle(module) {
 }
 
 export function AppSidebar(props) {
-  const currentUserRole = "sales";
+  const currentUserRole = "admin";
   const routes = getRoutesForRole(currentUserRole);
   const groupedRoutes = groupRoutesByModule(routes);
 

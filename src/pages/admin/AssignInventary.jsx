@@ -25,9 +25,15 @@ import { Card } from "@/components/ui/card"
 import { CalendarInput } from "@/components/custom/Calendar"
 import { useDropzone } from "react-dropzone"
 import { cn } from "@/lib/utils"
-import { Kanban, List, Plus, Upload } from "lucide-react"
+import { Kanban, List, Plus, Search, Upload, X as XIcon } from "lucide-react"
 import { IoPersonSharp } from "react-icons/io5"
-import { TypographyMuted, TypographyH1, TypographyH3, TypographySmall, TypographyH4, TypographyH2 } from '@/components/custom/Typography'
+import {
+    TypographyMuted,
+    TypographyH1,
+    TypographyH3,
+    TypographySmall,
+    TypographyH4,
+} from '@/components/custom/Typography'
 
 const currentUser = {
     name: "amolmahor500",
@@ -35,9 +41,23 @@ const currentUser = {
     avatar: ""
 }
 
+const ROLE_TYPES = [
+    { value: "admin", label: "Admin" },
+    { value: "manager", label: "Manager" },
+    { value: "employee", label: "Employee" },
+]
+
+const ASSIGN_MEMBERS = [
+    { name: "Mohan", email: "m@example.com" },
+    { name: "Govind", email: "m@google.com" },
+    { name: "Ravi", email: "m@support.com" },
+]
+
 export default function AssignInventary() {
     const [open, setOpen] = useState(false)
     const [inventoryList, setInventoryList] = useState([])
+    const [filters, setFilters] = useState({ searchName: "", searchRoles: [] })
+
     const [form, setForm] = useState({
         title: "",
         description: "",
@@ -66,83 +86,81 @@ export default function AssignInventary() {
         setOpen(false)
     }
 
+    const handleFilterChange = (field, value) => {
+        setFilters(prev => ({ ...prev, [field]: value }))
+    }
+
+    const clearFilter = (field) => {
+        setFilters(prev => ({ ...prev, [field]: field === "searchRoles" ? [] : "" }))
+    }
+
+    const handleRoleSelect = (role) => {
+        setFilters(prev => ({
+            ...prev,
+            searchRoles: prev.searchRoles.includes(role)
+                ? prev.searchRoles.filter(r => r !== role)
+                : [...prev.searchRoles, role]
+        }))
+    }
+
     return (
         <div className="space-y-6">
             <TypographyH1>Inventory</TypographyH1>
-            <div>
 
-                <div className="flex justify-between items-center">
-                    <div className="relative flex items-center">
-                        <Search className="absolute left-2 w-4 h-4 text-gray-400" />
-                        <Input
-                            className="w-full pl-8 pr-8"
-                            placeholder="Search Members By Name"
-                            value={filters.searchName}
-                            onChange={(e) => handleFilterChange("searchName", e.target.value)}
-                        />
-                        {filters.searchName && (
-                            <Button
-                                size="icon"
-                                variant="ghost"
-                                className="absolute right-2"
-                                onClick={() => clearFilter("searchName")}
-                            >
-                                <XIcon className="w-4 h-4" />
-                            </Button>
-                        )}
-                    </div>
-
-                    <div className="relative">
-                        <Select
-                            value=""
-                            onValueChange={handleRoleSelect}
+            {/* Filters */}
+            <div className="flex justify-between items-center gap-4">
+                <div className="relative flex items-center w-full">
+                    <Search className="absolute left-2 w-4 h-4 text-gray-400" />
+                    <Input
+                        className="w-full pl-8 pr-8"
+                        placeholder="Search Members By Name"
+                        value={filters.searchName}
+                        onChange={(e) => handleFilterChange("searchName", e.target.value)}
+                    />
+                    {filters.searchName && (
+                        <Button
+                            size="icon"
+                            variant="ghost"
+                            className="absolute right-2"
+                            onClick={() => clearFilter("searchName")}
                         >
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Search Members By Role" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {ROLE_TYPES.map(role => (
-                                    <SelectItem key={role.value} value={role.value}>
-                                        {role.label}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                        <div className="flex flex-wrap gap-1 mt-2">
-                            {filters.searchRoles.map(role => (
-                                <Badge
-                                    key={role}
-                                    variant="secondary"
-                                    className="flex items-center gap-1"
-                                >
-                                    {ROLE_TYPES.find(r => r.value === role)?.label || role}
-                                    <button
-                                        type="button"
-                                        className="ml-1"
-                                        onClick={() => handleRoleSelect(role)}
-                                    >
-                                        <XIcon className="w-3 h-3" />
-                                    </button>
-                                </Badge>
-                            ))}
-                        </div>
-                    </div>
+                            <XIcon className="w-4 h-4" />
+                        </Button>
+                    )}
                 </div>
-                <div className="flex justify-between items-center">
-                    <Button>
-                        <Plus /> Create
-                    </Button>
-                    <Button variant="secondary">
-                        <Kanban />
-                        Board
-                    </Button>
-                    <Button variant="outline">
-                        <List />
-                        List
-                    </Button>
+
+                <div className="w-full">
+                    <Select onValueChange={handleRoleSelect}>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Search Members By Role" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {ROLE_TYPES.map(role => (
+                                <SelectItem key={role.value} value={role.value}>
+                                    {role.label}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+
+                    <div className="flex flex-wrap gap-1 mt-2">
+                        {filters.searchRoles.map(role => (
+                            <Badge
+                                key={role}
+                                variant="secondary"
+                                className="flex items-center gap-1"
+                            >
+                                {ROLE_TYPES.find(r => r.value === role)?.label || role}
+                                <button type="button" onClick={() => handleRoleSelect(role)}>
+                                    <XIcon className="w-3 h-3" />
+                                </button>
+                            </Badge>
+                        ))}
+                    </div>
                 </div>
             </div>
 
+            {/* Top Buttons */}
             <div className="flex justify-between items-center">
                 <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger asChild>
@@ -158,9 +176,9 @@ export default function AssignInventary() {
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div className="col-span-2 space-y-4">
                                 <div className="grid gap-2">
-                                    <Label>Inventry Name</Label>
+                                    <Label>Inventory Name</Label>
                                     <Input
-                                        placeholder="title"
+                                        placeholder="Title"
                                         value={form.title}
                                         onChange={(e) => setForm({ ...form, title: e.target.value })}
                                     />
@@ -169,7 +187,7 @@ export default function AssignInventary() {
                                     <Label>Description</Label>
                                     <Textarea
                                         rows={6}
-                                        placeholder="Enter text or type '/' for commands"
+                                        placeholder="Enter description"
                                         value={form.description}
                                         onChange={(e) => setForm({ ...form, description: e.target.value })}
                                     />
@@ -183,8 +201,9 @@ export default function AssignInventary() {
                                     </div>
                                 </div>
                             </div>
+
                             <div className="space-y-4">
-                                <Card className="grid gap-0">
+                                <Card className="grid gap-0 p-3">
                                     <Label>Assigned By</Label>
                                     <div className="flex items-center gap-2 mt-2">
                                         <div className="w-10 h-10 bg-muted rounded-full flex items-center justify-center">
@@ -198,15 +217,20 @@ export default function AssignInventary() {
                                 </Card>
                                 <div className="grid gap-2">
                                     <Label>Assigned To</Label>
-                                    <Select>
+                                    <Select
+                                        value={form.assignedTo}
+                                        onValueChange={(val) => setForm({ ...form, assignedTo: val })}
+                                    >
                                         <SelectTrigger className="w-full">
                                             <SelectValue placeholder="Select a Assign Member" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectGroup>
-                                                <SelectItem value="m@example.com">m@example.com</SelectItem>
-                                                <SelectItem value="m@google.com">m@google.com</SelectItem>
-                                                <SelectItem value="m@support.com">m@support.com</SelectItem>
+                                                {ASSIGN_MEMBERS.map(m => (
+                                                    <SelectItem key={m.email} value={m.email}>
+                                                        {m.name} ({m.email})
+                                                    </SelectItem>
+                                                ))}
                                             </SelectGroup>
                                         </SelectContent>
                                     </Select>
@@ -232,17 +256,25 @@ export default function AssignInventary() {
                         </div>
                     </DialogContent>
                 </Dialog>
+
+                <div className="flex gap-2">
+                    <Button variant="secondary"><Kanban /> Board</Button>
+                    <Button variant="outline"><List /> List</Button>
+                </div>
             </div>
 
+            {/* Inventory Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {inventoryList.map((item) => (
-                    <Card key={item.id} className="grid gap-2 py-6">
-                        <div className="flex justify-between text-sm text-muted-foreground">
-                            <TypographySmall className="text-xs ml-auto">Date: {item.date}</TypographySmall>
+                    <Card key={item.id} className="grid gap-2 py-6 px-4">
+                        <div className="text-xs text-muted-foreground ml-auto">
+                            Date: {item.date}
                         </div>
                         <h3 className="text-lg font-semibold">{item.title}</h3>
-                        <TypographyH4></TypographyH4>
-                        <div className="flex items-center gap-2 text-sm">
+                        <p className="text-sm">{item.description}</p>
+                        <TypographySmall>Serial No: {item.serialNo}</TypographySmall>
+                        {item.file && <TypographyMuted className="text-xs">File: {item.file.name}</TypographyMuted>}
+                        <div className="flex items-center gap-2 text-sm pt-2">
                             <div className="w-10 h-10 bg-muted rounded-full flex items-center justify-center">
                                 <IoPersonSharp className="text-gray-600" />
                             </div>

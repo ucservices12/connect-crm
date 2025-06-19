@@ -120,7 +120,7 @@ export default function SalesDashboard() {
         <div className="border-t-2 pt-6 grid gap-4">
           <div className="flex justify-between items-center">
             <TypographyH3>Customers</TypographyH3>
-            <Link to="/sales-settings/customers">
+            <Link to="/current-sales/customers">
               <Button>View All</Button>
             </Link>
           </div>

@@ -33,7 +33,7 @@ export function InvoiceTable({ invoices }) {
           {invoices.map((invoice, i) => (
             <TableRow key={i}>
               <TableCell>{invoice.number}</TableCell>
-              <TableCell className="flex gap-2">
+              <TableCell className="flex gap-2 border-none">
                 <div className="flex gap-2">
                   <div className="flex items-center cursor-pointer justify-center w-8 h-8 rounded-full bg-muted">
                     <IoPersonSharp className="text-gray-600" />
@@ -50,7 +50,7 @@ export function InvoiceTable({ invoices }) {
               <TableCell>{invoice.dueDate}</TableCell>
               <TableCell>₹{invoice.amount.toLocaleString("en-IN")}</TableCell>
               {location.pathname !== "/sales-board" && (
-                <TableCell className="flex justify-center">
+                <TableCell className="flex justify-center border-none">
                   <Link to={`/current-sales/invoices/update/${invoice.id}`}>
                     <Button variant="ghost" size="icon">
                       <Pencil />

@@ -40,3 +40,10 @@ export const currentSalesTabLinks = [
   { label: "Customers", href: "/current-sales/customers" },
   { label: "Invoices", href: "/current-sales/invoices" },
 ];
+
+export const futureSalesTabLinks = [
+  { label: "Estimates", href: "/future-sales" },
+  { label: "Deals", href: "/future-sales/deals" },
+  { label: "Proposals", href: "/future-sales/proposals" },
+  { label: "Forecasting", href: "/future-sales/forecastings" },
+];

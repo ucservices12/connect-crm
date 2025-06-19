@@ -1,6 +1,7 @@
 import { Combobox } from "@/components/custom/ComboBox";
 import { useState } from "react";
 import CurrentSalesInvoices from "./CurrentSalesInvoices";
+import { FutureSalesEstimate } from "../future-sales/FutureSalesEstimate";
 
 const customers = [
   { value: "cust1", label: "Amit Sharma" },
@@ -25,6 +26,8 @@ export function CurrentSalesStatements() {
         />
       </div>
       <CurrentSalesInvoices />
+      < div  className="border-b "/>
+      <FutureSalesEstimate />
     </div>
   );
 }
