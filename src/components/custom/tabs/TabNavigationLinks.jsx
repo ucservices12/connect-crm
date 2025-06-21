@@ -47,3 +47,15 @@ export const futureSalesTabLinks = [
   { label: "Proposals", href: "/future-sales/proposals" },
   { label: "Forecasting", href: "/future-sales/forecastings" },
 ];
+
+export const saleSettingTabLinks = [
+  { label: "Product & Service", href: "/sales-settings" },
+  { label: "Taxes", href: "/sales-settings/taxes" },
+  { label: "Customers", href: "/sales-settings/customers" },
+  { label: "Choose Currency", href: "/sales-settings/choose-currency" },
+  { label: "Footer", href: "/sales-settings/footer" },
+  { label: "Notes & Terms", href: "/sales-settings/notes-and-terms" },
+  { label: "Indutries", href: "/sales-settings/industries" },
+  { label: "Verify Email", href: "/sales-settings/verify-emails" },
+  { label: "Meeting Links", href: "/sales-settings/meeting-links" },
+]

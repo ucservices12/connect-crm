@@ -7,12 +7,14 @@ import {
   currentSalesRoutes,
   futureSalesRoutes,
   salesMainRoutes,
+  salesSettingsRoutes
 } from "@/routes";
 import {
   OrganazationTabs,
   EmployeeTabs,
   CurrentSalesTabs,
   FutureSalesTabs,
+  SellSettingsTabs
 } from "@/components/custom/tabs/Tabs";
 import { userPermissions, subRouteMeta } from "@/pages/permissions/PagesPermission";
 
@@ -81,6 +83,12 @@ export default function App() {
 
         <Route path="future-sales/*" element={<FutureSalesTabs />}>
           {futureSalesRoutes.map((r) => (
+            <Route key={r.path} path={r.path} element={r.element} />
+          ))}
+        </Route>
+
+        <Route path="sales-settings/*" element={<SellSettingsTabs />}>
+          {salesSettingsRoutes.map((r) => (
             <Route key={r.path} path={r.path} element={r.element} />
           ))}
         </Route>

@@ -7,13 +7,14 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Pencil, Trash } from "lucide-react";
+import { Pencil, Plus, Trash } from "lucide-react";
 import { IoPerson } from "react-icons/io5";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { Link } from "react-router-dom";
 
 export function DealsTable({ deals, onEdit, onDelete }) {
     return (
-        <div className="rounded-md">
+        <>
             <Table>
                 <TableHeader className="bg-[#f8f8f8]">
                     <TableRow>
@@ -50,7 +51,14 @@ export function DealsTable({ deals, onEdit, onDelete }) {
                                 <StatusBadge status={deal.status} />
                             </TableCell>
                             <TableCell className="text-center space-x-2">
-                                <Button
+                                <Link to={`/future-sales/proposals/create/${deal?.title}`}>
+                                    <Button>
+                                        <Plus />
+                                        Create
+                                    </Button>
+                                </Link>
+
+                                {/* <Button
                                     variant="ghost"
                                     size="icon"
                                     onClick={() => onEdit?.(deal)}
@@ -63,12 +71,12 @@ export function DealsTable({ deals, onEdit, onDelete }) {
                                     onClick={() => onDelete?.(deal)}
                                 >
                                     <Trash className="w-4 h-4 text-red-500" />
-                                </Button>
+                                </Button> */}
                             </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
-        </div>
+        </>
     );
 }

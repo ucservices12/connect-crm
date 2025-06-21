@@ -6,6 +6,7 @@ import {
   salesCotactTabLinks,
   currentSalesTabLinks,
   futureSalesTabLinks,
+  saleSettingTabLinks,
 } from "./TabNavigationLinks";
 import SettingsNav from "@/components/SettingsNav";
 
@@ -45,6 +46,16 @@ export const FutureSalesTabs = () => {
     <>
       <TypographyH1>Future Sales</TypographyH1>
       <SettingsNav links={futureSalesTabLinks} />
+      <Outlet />
+    </>
+  );
+};
+
+export const SellSettingsTabs = () => {
+  return (
+    <>
+      <TypographyH1>Sales Settings</TypographyH1>
+      <SettingsNav links={saleSettingTabLinks} />
       <Outlet />
     </>
   );

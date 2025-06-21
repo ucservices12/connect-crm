@@ -7,7 +7,7 @@ import { TypographyH3 } from "@/components/custom/Typography";
 import { CustomersTable } from "@/components/tables/CustomersTable";
 import CustomerDialog, {
   getEmptyCustomer,
-} from "../../../components/custom/dialog/CustomerDialog";
+} from "@/components/custom/dialog/CustomerDialog";
 
 export const initialCustomers = [
   {

@@ -23,7 +23,7 @@ import { Plus } from "lucide-react";
 import AddProductDialog from "./AddProductDialog";
 import AddTaxDialog from "./AddTaxDialog";
 
-const EMPTY_ITEM = {
+export const EMPTY_ITEM = {
     name: "",
     description: "",
     quantity: 1,
@@ -101,7 +101,7 @@ export default function InvoiceItemDialog({ open, onClose, onSave, itemToEdit = 
     };
 
     const handleClose = () => {
-        setItem(EMPTY_ITEM); // Clear on close
+        setItem(EMPTY_ITEM);
         onClose();
     };
 
