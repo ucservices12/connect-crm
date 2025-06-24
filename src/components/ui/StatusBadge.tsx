@@ -1,24 +1,49 @@
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
+import clsx from "clsx";
 
-export function StatusBadge({ status }: { status: string }) {
+interface StatusBadgeProps {
+    status: string;
+    className?: string;
+}
+
+export function StatusBadge({ status, className = "" }: StatusBadgeProps) {
+    const normalizedStatus = status.trim().toLowerCase();
+
     const statusColorMap: Record<string, string> = {
-        "In Progress": "bg-blue-200 ",
-        Completed: "bg-green-200 ",
-        Paid: "bg-green-200 ",
-        Yes: "bg-green-200 ",
-        Unpaid: "bg-orange-200 ",
-        Pending: "bg-yellow-200",
-        Cancelled: "bg-red-200 ",
-        Overdue: "bg-orange-200 ",
-        No: "bg-red-300 ",
-        Draft: "bg-gray-200 ",
-    }
+        // Standard status mappings
+        "in progress": "bg-blue-200 text-blue-800",
+        completed: "bg-green-200 text-green-800",
+        paid: "bg-green-200 text-green-800",
+        yes: "bg-green-200 text-green-800",
+        unpaid: "bg-orange-200 text-orange-800",
+        pending: "bg-yellow-200 text-yellow-800",
+        cancelled: "bg-red-200 text-red-800",
+        overdue: "bg-orange-200 text-orange-800",
+        no: "bg-red-300 text-red-800",
+        draft: "bg-gray-200 text-gray-800",
 
-    const colorClass = statusColorMap[status] || "bg-gray-300 text-black"
+        // Contact types
+        "contact parked": "bg-gray-100 text-gray-700",
+        customer: "bg-sky-100 text-sky-800",
+        lead: "bg-orange-100 text-orange-800",
+        opportunity: "bg-purple-100 text-purple-800",
+        "qualified lead": "bg-green-100 text-green-800",
+        "repeat customer": "bg-indigo-100 text-indigo-800",
+        subscriber: "bg-yellow-100 text-yellow-800",
+    };
+
+    const colorClass =
+        statusColorMap[normalizedStatus] || "bg-gray-300 text-black";
 
     return (
-        <Badge className={`text-xs px-2 py-1 text-black rounded-full ${colorClass}`}>
+        <Badge
+            className={clsx(
+                "text-xs px-2 py-1 rounded-full capitalize",
+                colorClass,
+                className
+            )}
+        >
             {status}
         </Badge>
-    )
+    );
 }

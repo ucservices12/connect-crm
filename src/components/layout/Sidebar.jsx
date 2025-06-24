@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/sidebar"
 import { Outlet } from "react-router-dom"
 import Navbar from "./Navbar"
+import { BreadcrumbData } from "../custom/Breadcrumb"
 
 export default function Sidebar() {
   return (
@@ -12,7 +13,8 @@ export default function Sidebar() {
       <AppSidebar />
       <SidebarInset>
         <Navbar />
-        <div className="flex flex-1 flex-col gap-4 p-4 sm:px-8 pt-4">
+        <div className="flex flex-1 flex-col gap-4 p-4 sm:px-8 pt-22">
+          <BreadcrumbData />
           <Outlet />
         </div>
       </SidebarInset>

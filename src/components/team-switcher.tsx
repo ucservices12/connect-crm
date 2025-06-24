@@ -33,7 +33,7 @@ export function TeamSwitcher({ data }) {
               size="lg"
               className="data-[state=open]:bg-accent-foreground cursor-pointer data-[state=open]:text-white hover:bg-accent-foreground bg-accent-foreground"
             >
-              <p className="grid flex-1 text-center text-muted-foreground font-normal text-sm leading-normal">
+              <p className="grid flex-1 text-center text-accent font-normal text-xs leading-normal">
                 {activeTeam.name}
               </p>
               <ChevronsUpDown className="ml-auto" />

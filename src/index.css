@@ -123,6 +123,16 @@
 
     overflow-x: hidden !important;
   }
+
+  body::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 9999px;
+  }
+  
 }
 
 .scrollbar-hide {

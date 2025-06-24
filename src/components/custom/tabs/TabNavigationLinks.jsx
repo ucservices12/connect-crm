@@ -28,10 +28,10 @@ export const employeeTablinks = [
 
 // sales
 export const salesCotactTabLinks = [
-  { label: "Contact List", href: "/" },
+  { label: "Contact List", href: "/contacts" },
   { label: "Tags", href: "/contacts/tags" },
-  { label: "Companies", href: "/contact/companies" },
-  { label: "Maps", href: "/contact/maps" },
+  { label: "Companies", href: "/contacts/companies" },
+  { label: "Maps", href: "/contacts/maps" },
 ];
 
 export const currentSalesTabLinks = [

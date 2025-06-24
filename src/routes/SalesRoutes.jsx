@@ -5,7 +5,16 @@ import CurrentSalesInvoices from "@/pages/sales/current-sales/CurrentSalesInvoic
 import { CurrentSalesStatements } from "@/pages/sales/current-sales/CurrentSalesStatements";
 import { CreateInvoice } from "@/pages/sales/current-sales/CreateInvoice";
 import { EditInvoice } from "@/pages/sales/current-sales/Editinvoice";
+import Invoicedetails from "@/pages/sales/current-sales/Invoicedetails";
 
+
+// contact sales
+import ContactList from "@/pages/sales/contact/ContactList";
+import Tags from "@/pages/sales/contact/Tags";
+import Companies from "@/pages/sales/contact/Companies";
+import Maps from "@/pages/sales/contact/Maps";
+
+// future sales
 import { FutureSalesEstimate } from "@/pages/sales/future-sales/FutureSalesEstimate";
 import Deals from "@/pages/sales/future-sales/Deals";
 import Proposals from "@/pages/sales/future-sales/Proposals";
@@ -31,6 +40,7 @@ export const currentSalesRoutes = [
     { path: "invoices", element: <CurrentSalesInvoices /> },
     { path: "invoices/create", element: <CreateInvoice /> },
     { path: "invoices/update/:id", element: <EditInvoice /> },
+    { path: "invoices/details/:id", element: <Invoicedetails /> },
 ];
 
 export const futureSalesRoutes = [
@@ -54,4 +64,13 @@ export const salesSettingsRoutes = [
     { path: "meeting-links", element: <MeetingLinks /> },
 ];
 
-export const salesMainRoutes = [{ path: "sales-board", element: <SalesDashboard /> }];
+export const salesContactRoutes = [
+    { path: "", element: <ContactList /> },
+    { path: "tags", element: <Tags /> },
+    { path: "companies", element: <Companies /> },
+    { path: "maps", element: <Maps /> },
+];
+
+export const salesMainRoutes = [
+    { path: "sales-board", element: <SalesDashboard /> },
+];

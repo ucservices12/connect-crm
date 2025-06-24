@@ -54,7 +54,7 @@ export function NavMain({
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton
                     tooltip={item.title}
-                    className={isParentActive ? "bg-primary/60 text-primary-foreground" : "hover:bg-primary opacity-70"}
+                    className={isParentActive ? "sm:bg-primary/60 text-primary sm:text-primary-foreground" : "hover:bg-primary opacity-70"}
                   >
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>

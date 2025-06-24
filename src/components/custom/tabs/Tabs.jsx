@@ -51,6 +51,16 @@ export const FutureSalesTabs = () => {
   );
 };
 
+export const ContactSalesTabs = () => {
+  return (
+    <>
+      <TypographyH1>Sales Contact</TypographyH1>
+      <SettingsNav links={salesCotactTabLinks} />
+      <Outlet />
+    </>
+  );
+};
+
 export const SellSettingsTabs = () => {
   return (
     <>

@@ -16,16 +16,17 @@ export default function SettingsNav({ links }) {
     const moreLinks = links.slice(MAIN_LINKS_COUNT)
 
     return (
-        <div className="mt-1 mb-3 w-full sm:w-fit min-w-0">
-            <div className="flex gap-2 bg-[#fbfcfe] rounded-md p-1 w-full overflow-x-auto whitespace-nowrap">
+        <div className="my-2 w-full sm:w-fit min-w-0">
+            <div className="flex gap-4 bg-[#fbfcfe] w-full overflow-x-auto whitespace-nowrap pb-2">
                 {mainLinks.map((link) => {
                     const isActive = location.pathname === link.href
                     return (
                         <Link to={link.href} key={link.href}>
                             <Button
-                                variant={isActive ? "outline" : "ghost"}
-                                className={`rounded-lg px-5 text-base font-light transition-none
-                                    ${isActive ? "border-primary text-primary bg-transparent shadow-none" : "bg-transparent shadow-none"}
+                                size="sm"
+                                variant={isActive ? "outline" : "stone"}
+                                className={`px-5 hover:bg-primary hover:text-white text-sm font-normal transition-none
+                                    ${isActive ? "bg-primary text-white shadow-none" : "bg-transparent shadow-none"}
                                 `}
                             >
                                 {link.label}
@@ -38,8 +39,9 @@ export default function SettingsNav({ links }) {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
+                                size="sm"
                                 variant="ghost"
-                                className="rounded-lg px-5 font-light text-base flex items-center gap-1 bg-transparent shadow-none"
+                                className="font-light text-sm flex items-center gap-1 bg-transparent shadow-none"
                             >
                                 More
                                 <MoreHorizontal className="w-4 h-4" />

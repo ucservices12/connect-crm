@@ -59,9 +59,11 @@ export function InvoiceTable({ invoices }) {
                   <Button variant="ghost" size="icon">
                     <Trash />
                   </Button>
-                  <Button variant="ghost" size="icon">
-                    <Printer />
-                  </Button>
+                  <Link to={`/current-sales/invoices/details/${invoice?.id}`}>
+                    <Button variant="ghost" size="icon">
+                      <Printer />
+                    </Button>
+                  </Link>
                 </TableCell>
               )}
             </TableRow>
