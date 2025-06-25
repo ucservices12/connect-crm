@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import SalesDashboard from "@/pages/sales/SalesDashboard";
 import CurrentSalesPayment from "@/pages/sales/current-sales/CurrentSalesPayment";
 import { CurrentSalesCustomers } from "@/pages/sales/current-sales/CurrentSalesCustomers";
@@ -6,7 +7,6 @@ import { CurrentSalesStatements } from "@/pages/sales/current-sales/CurrentSales
 import { CreateInvoice } from "@/pages/sales/current-sales/CreateInvoice";
 import { EditInvoice } from "@/pages/sales/current-sales/Editinvoice";
 import Invoicedetails from "@/pages/sales/current-sales/Invoicedetails";
-
 
 // contact sales
 import ContactList from "@/pages/sales/contact/ContactList";
@@ -21,8 +21,9 @@ import Proposals from "@/pages/sales/future-sales/Proposals";
 import ProposalDocument from "@/pages/sales/future-sales/ProposalDocument";
 import { CreateEstimate } from "@/pages/sales/future-sales/CreateEstimate";
 import { EditEstimate } from "@/pages/sales/future-sales/EditEstimate";
+import Estimatesdetails from "@/pages/sales/future-sales/Estimatesdetails";
 
-// sales setttings
+// sales settings
 import ProductService from "@/pages/sales/sales-settings/ProductService";
 import Taxes from "@/pages/sales/sales-settings/Taxes";
 import Customers from "@/pages/sales/sales-settings/Customers";
@@ -33,44 +34,57 @@ import Industries from "@/pages/sales/sales-settings/Industries";
 import VerifyEmails from "@/pages/sales/sales-settings/VerifyEmails";
 import MeetingLinks from "@/pages/sales/sales-settings/MeetingLinks";
 
-export const currentSalesRoutes = [
-    { path: "", element: <CurrentSalesPayment /> },
-    { path: "statements", element: <CurrentSalesStatements /> },
-    { path: "customers", element: <CurrentSalesCustomers /> },
-    { path: "invoices", element: <CurrentSalesInvoices /> },
-    { path: "invoices/create", element: <CreateInvoice /> },
-    { path: "invoices/update/:id", element: <EditInvoice /> },
-    { path: "invoices/details/:id", element: <Invoicedetails /> },
-];
+// Tabs
+import {
+    CurrentSalesTabs,
+    FutureSalesTabs,
+    SellSettingsTabs,
+    ContactSalesTabs,
+} from "@/components/custom/tabs/Tabs";
 
-export const futureSalesRoutes = [
-    { path: "", element: <FutureSalesEstimate /> },
-    { path: "deals", element: <Deals /> },
-    { path: "proposals", element: <Proposals /> },
-    { path: "proposals/create/:id", element: <ProposalDocument /> },
-    { path: "estimates/create", element: <CreateEstimate /> },
-    { path: "estimates/update/:id", element: <EditEstimate /> },
-];
+export default function SalesRoutes() {
+    return (
+        <Routes>
+            <Route path="sales-board" element={<SalesDashboard />} />
 
-export const salesSettingsRoutes = [
-    { path: "", element: <ProductService /> },
-    { path: "taxes", element: <Taxes /> },
-    { path: "customers", element: <Customers /> },
-    { path: "choose-currency", element: <ChooseCurrency /> },
-    { path: "footer", element: <Footer /> },
-    { path: "notes-and-terms", element: <NotesAndTerms /> },
-    { path: "industries", element: <Industries /> },
-    { path: "verify-emails", element: <VerifyEmails /> },
-    { path: "meeting-links", element: <MeetingLinks /> },
-];
+            <Route path="contacts/*" element={<ContactSalesTabs />}>
+                <Route index element={<ContactList />} />
+                <Route path="tags" element={<Tags />} />
+                <Route path="companies" element={<Companies />} />
+                <Route path="maps" element={<Maps />} />
+            </Route>
 
-export const salesContactRoutes = [
-    { path: "", element: <ContactList /> },
-    { path: "tags", element: <Tags /> },
-    { path: "companies", element: <Companies /> },
-    { path: "maps", element: <Maps /> },
-];
+            <Route path="current-sales/*" element={<CurrentSalesTabs />}>
+                <Route index element={<CurrentSalesPayment />} />
+                <Route path="statements" element={<CurrentSalesStatements />} />
+                <Route path="customers" element={<CurrentSalesCustomers />} />
+                <Route path="invoices" element={<CurrentSalesInvoices />} />
+                <Route path="invoices/create" element={<CreateInvoice />} />
+                <Route path="invoices/update/:id" element={<EditInvoice />} />
+                <Route path="invoices/details/:id" element={<Invoicedetails />} />
+            </Route>
 
-export const salesMainRoutes = [
-    { path: "sales-board", element: <SalesDashboard /> },
-];
+            <Route path="future-sales/*" element={<FutureSalesTabs />}>
+                <Route index element={<FutureSalesEstimate />} />
+                <Route path="deals" element={<Deals />} />
+                <Route path="proposals" element={<Proposals />} />
+                <Route path="proposals/create/:id" element={<ProposalDocument />} />
+                <Route path="estimates/create" element={<CreateEstimate />} />
+                <Route path="estimates/update/:id" element={<EditEstimate />} />
+                <Route path="estimates/details/:id" element={<Estimatesdetails />} />
+            </Route>
+
+            <Route path="sales-settings/*" element={<SellSettingsTabs />}>
+                <Route index element={<ProductService />} />
+                <Route path="taxes" element={<Taxes />} />
+                <Route path="customers" element={<Customers />} />
+                <Route path="choose-currency" element={<ChooseCurrency />} />
+                <Route path="footer" element={<Footer />} />
+                <Route path="notes-and-terms" element={<NotesAndTerms />} />
+                <Route path="industries" element={<Industries />} />
+                <Route path="verify-emails" element={<VerifyEmails />} />
+                <Route path="meeting-links" element={<MeetingLinks />} />
+            </Route>
+        </Routes>
+    );
+}

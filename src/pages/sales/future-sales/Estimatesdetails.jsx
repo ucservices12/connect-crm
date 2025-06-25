@@ -16,7 +16,7 @@ import {
 // Base64 logo from uploaded image
 const logoBase64 = "/logo.png";
 
-export default function InvoiceDetails() {
+export default function Estimatesdetails() {
     const navigate = useNavigate();
     const invoiceRef = useRef(null);
 
@@ -111,7 +111,7 @@ export default function InvoiceDetails() {
                         <ArrowLeft /> Back
                     </Button>
                     <Button>
-                        <Send /> Send Invoice
+                        <Send /> Send Estimate
                     </Button>
                     <Button onClick={handleDownloadPDF}>
                         <Printer /> Download PDF
@@ -119,7 +119,7 @@ export default function InvoiceDetails() {
                 </div>
                 <div className="grid gap-2">
                     <StatusBadge status="paid" />
-                    <TypographyH5>Invoice #: {invoice.invoiceNumber}</TypographyH5>
+                    <TypographyH5>Estimate #: {invoice.invoiceNumber}</TypographyH5>
                 </div>
             </div>
 
@@ -133,7 +133,7 @@ export default function InvoiceDetails() {
                     <img src={logoBase64} alt="Company Logo" className="h-18" />
                     <div className="text-right">
                         <TypographyH1>
-                            INVOICE
+                            QUOTATION
                         </TypographyH1>
                         <TypographyH5>
                             ORIGINAL FOR RECIPIENT

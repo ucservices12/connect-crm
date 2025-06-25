@@ -59,9 +59,11 @@ export function EstimateTable({ estimates }) {
                                     <Button variant="ghost" size="icon">
                                         <Trash />
                                     </Button>
-                                    <Button variant="ghost" size="icon">
-                                        <Printer />
-                                    </Button>
+                                    <Link to={`/future-sales/estimates/details/${estimate?.id}`}>
+                                        <Button variant="ghost" size="icon">
+                                            <Printer />
+                                        </Button>
+                                    </Link>
                                 </TableCell>
                             )}
                         </TableRow>

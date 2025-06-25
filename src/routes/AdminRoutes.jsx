@@ -1,20 +1,53 @@
+import { Routes, Route } from "react-router-dom";
 import AssignInventary from "@/pages/admin/AssignInventary";
-import AdminPage from "@/pages/admin/Page";
 import EmployeeDirectory from "@/pages/admin/EmployeeDirectory";
 import RolePermissions from "@/pages/admin/RolePermissions";
 import Invitations from "@/pages/admin/Invitations";
 
-export const adminEmployeeRoutes = [
-    { path: "members", element: <EmployeeDirectory /> },
-    { path: "permissions", element: <RolePermissions /> },
-    { path: "invitations", element: <Invitations /> },
-];
+// org
+import OrganazationDetails from "@/pages/organazation/OrganazationDetails";
+import Branding from "@/pages/organazation/Branding";
+import PagesControl from "@/pages/organazation/PagesControl";
+import ConfigureLeaveType from "@/pages/organazation/ConfigureLeaveType";
+import DocumentList from "@/pages/organazation/DocumentList";
+import Policy from "@/pages/organazation/Policy";
+import Holiday from "@/pages/organazation/Holiday";
+import Bussinessday from "@/pages/organazation/BussinessDay";
+import DocumentSequence from "@/pages/organazation/DocumentSequence";
+import SkillSets from "@/pages/organazation/SkillSets";
+import LeaveManagement from "@/pages/organazation/LeaveManagement";
+import Domains from "@/pages/organazation/Domains";
+import DepartmentEmails from "@/pages/organazation/Emails";
+import { Page } from "@/App";
 
-export const adminInventoryRoutes = [
-    { path: "inventory", element: <AssignInventary /> },
-];
+import { AdminEmployeeManageTabs, OrganazationTabs } from "@/components/custom/tabs/Tabs";
 
-export const adminBaseRoutes = [
-    { path: "myteam/*", element: <AdminPage />, children: adminEmployeeRoutes },
-    { path: "*", element: <AssignInventary />, children: adminInventoryRoutes },
-];
+export default function AdminRoutes() {
+    return (
+        <Routes>
+            <Route path="myteam/*" element={<AdminEmployeeManageTabs />}>
+                <Route path="members" element={<EmployeeDirectory />} />
+                <Route path="permissions" element={<RolePermissions />} />
+                <Route path="invitations" element={<Invitations />} />
+            </Route>
+            <Route path="settings/*" element={<OrganazationTabs />}>
+                <Route index element={<OrganazationDetails />} />
+                <Route path="branding" element={<Branding />} />
+                <Route path="pages-control" element={<PagesControl />} />
+                <Route path="billing" element={<Page title="Billing" />} />
+                <Route path="leave-type" element={<ConfigureLeaveType />} />
+                <Route path="document-list" element={<DocumentList />} />
+                <Route path="policy" element={<Policy />} />
+                <Route path="holidays" element={<Holiday />} />
+                <Route path="business-days" element={<Bussinessday />} />
+                <Route path="document-sequence" element={<DocumentSequence />} />
+                <Route path="skill-sets" element={<SkillSets />} />
+                <Route path="leave-management" element={<LeaveManagement />} />
+                <Route path="domain" element={<Domains />} />
+                <Route path="record-face" element={<Page title="Record Face" />} />
+                <Route path="email-settings" element={<DepartmentEmails />} />
+            </Route>
+            <Route path="inventory" element={<AssignInventary />} />
+        </Routes>
+    );
+}

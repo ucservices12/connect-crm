@@ -3,10 +3,12 @@ import { TypographyH1 } from "../Typography";
 import {
   organazationTabLinks,
   employeeTablinks,
+  adminEmployeeManageTabLinks,
   salesCotactTabLinks,
   currentSalesTabLinks,
   futureSalesTabLinks,
   saleSettingTabLinks,
+  purchasesTabLinks,
 } from "./TabNavigationLinks";
 import SettingsNav from "@/components/SettingsNav";
 
@@ -29,6 +31,27 @@ export const EmployeeTabs = () => {
     </>
   );
 };
+
+export const AdminEmployeeManageTabs = () => {
+  return (
+    <>
+      <TypographyH1>Teams</TypographyH1>
+      <SettingsNav links={adminEmployeeManageTabLinks} />
+      <Outlet />
+    </>
+  )
+}
+
+// finances tabs 
+export const PurchasesTabs = () => {
+  return (
+    <>
+      <TypographyH1>Purchases</TypographyH1>
+      <SettingsNav links={purchasesTabLinks} />
+      <Outlet />
+    </>
+  )
+}
 
 // sales tabs
 export const CurrentSalesTabs = () => {

@@ -1,3 +1,4 @@
+
 export const organazationTabLinks = [
   { label: "Settings", href: "/admin/settings" },
   { label: "Branding", href: "/admin/settings/branding" },
@@ -16,6 +17,13 @@ export const organazationTabLinks = [
   { label: "Email Settings", href: "/admin/settings/email-settings" },
 ];
 
+// admin 
+export const adminEmployeeManageTabLinks = [
+  { label: "Members", href: "/admin/myteam/members" },
+  { label: "Permissions", href: "/admin/myteam/permissions" },
+  { label: "Invitations", href: "/admin/myteam/invitations" }
+]
+
 export const employeeTablinks = [
   { label: "Profile", href: "/employee/settings/profile" },
   { label: "Inventory", href: "/employee/settings/inventory" },
@@ -25,6 +33,12 @@ export const employeeTablinks = [
   { label: "Leaves Policy", href: "/employee/settings/leaves-policy" },
   { label: "Reimbursements", href: "/employee/settings/reimbursements" },
 ];
+
+// finances 
+export const purchasesTabLinks = [
+  { label: "Bills", href: "/finance/purchases" },
+  { label: "Reimbursements", href: "/finance/purchases/reimbursements" },
+]
 
 // sales
 export const salesCotactTabLinks = [
