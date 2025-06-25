@@ -222,7 +222,7 @@ export default function EmployeeDirectory() {
             </div>
 
             {/* Stats and Actions */}
-            <div className="flex w-full justify-between items-center gap-4 mt-4">
+            <div className="flex w-full sm:flex-row flex-col sm:justify-between sm:items-center gap-4 mt-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="bg-muted rounded-md px-4 py-2 min-w-[220px]">
                         <Label>No Of Confirmed Employees</Label>

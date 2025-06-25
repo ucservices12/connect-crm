@@ -1,3 +1,4 @@
+// App.jsx
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "@/components/layout/Sidebar";
 import {
@@ -8,15 +9,17 @@ import {
   futureSalesRoutes,
   salesMainRoutes,
   salesSettingsRoutes,
-  salesContactRoutes
+  salesContactRoutes,
+  financeMainRoutes,
 } from "@/routes";
+
 import {
   OrganazationTabs,
   EmployeeTabs,
   CurrentSalesTabs,
   FutureSalesTabs,
   SellSettingsTabs,
-  ContactSalesTabs
+  ContactSalesTabs,
 } from "@/components/custom/tabs/Tabs";
 import { userPermissions, subRouteMeta } from "@/pages/permissions/PagesPermission";
 
@@ -48,68 +51,63 @@ function getAllRoutes(permissions) {
 export default function App() {
   const allRoutes = getAllRoutes(userPermissions);
 
+  const renderNestedRoutes = (routes) =>
+    routes.map((r) => <Route key={r.path} path={r.path} element={r.element} />);
+
   return (
     <Routes>
       <Route path="/" element={<Sidebar />}>
-
         <Route index element={<Page title="Home" />} />
 
         <Route path="employee/settings/*" element={<EmployeeTabs />}>
-          {employeeSettingsRoutes.map((r) => (
-            <Route key={r.path} path={r.path} element={r.element} />
-          ))}
+          {renderNestedRoutes(employeeSettingsRoutes)}
         </Route>
 
         <Route path="admin/settings/*" element={<OrganazationTabs />}>
-          {adminSettingsRoutes.map((r) => (
-            <Route key={r.path} path={r.path} element={r.element} />
-          ))}
+          {renderNestedRoutes(adminSettingsRoutes)}
         </Route>
 
         {adminBaseRoutes.map(({ path, element, children }) => (
           <Route key={path} path={`admin/${path}`} element={element}>
-            {children?.map((r) => (
-              <Route key={r.path} path={r.path} element={r.element} />
-            ))}
+            {renderNestedRoutes(children || [])}
           </Route>
         ))}
 
-        {salesMainRoutes.map((r) => (
-          <Route key={r.path} path={r.path} element={r.element} />
-        ))}
+        {renderNestedRoutes(salesMainRoutes)}
 
         <Route path="contacts/*" element={<ContactSalesTabs />}>
-          {salesContactRoutes.map((r) => (
-            <Route key={r.path} path={r.path} element={r.element} />
-          ))}
+          {renderNestedRoutes(salesContactRoutes)}
         </Route>
 
         <Route path="current-sales/*" element={<CurrentSalesTabs />}>
-          {currentSalesRoutes.map((r) => (
-            <Route key={r.path} path={r.path} element={r.element} />
-          ))}
+          {renderNestedRoutes(currentSalesRoutes)}
         </Route>
 
         <Route path="future-sales/*" element={<FutureSalesTabs />}>
-          {futureSalesRoutes.map((r) => (
-            <Route key={r.path} path={r.path} element={r.element} />
-          ))}
+          {renderNestedRoutes(futureSalesRoutes)}
         </Route>
 
         <Route path="sales-settings/*" element={<SellSettingsTabs />}>
-          {salesSettingsRoutes.map((r) => (
-            <Route key={r.path} path={r.path} element={r.element} />
-          ))}
+          {renderNestedRoutes(salesSettingsRoutes)}
         </Route>
 
-        {/* Fallback Routes from Permissions */}
+        {/* ✅ Add Finance Route Group */}
+        <Route path="finance/*" >
+          {renderNestedRoutes(financeMainRoutes)}
+        </Route>
+
+        {/* Fallback from Permissions */}
         {allRoutes
           .filter(
             (route) =>
               !route.path.startsWith("/employee/settings/") &&
               !route.path.startsWith("/admin/settings/") &&
-              !route.path.startsWith("/admin/myteam/") &&
-              !route.path.startsWith("/admin/")
+              !route.path.startsWith("/admin/") &&
+              !route.path.startsWith("/contacts") &&
+              !route.path.startsWith("/current-sales") &&
+              !route.path.startsWith("/future-sales") &&
+              !route.path.startsWith("/sales-settings") &&
+              !route.path.startsWith("/finance")
           )
           .map((route) => (
             <Route

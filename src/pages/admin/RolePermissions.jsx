@@ -10,7 +10,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from '@/components/ui/button'
 
 const roles = [
@@ -77,49 +76,47 @@ export default function RolePermissions() {
 
     return (
         <>
-            <div className="rounded-md border overflow-x-auto">
-                <ScrollArea className="w-full">
-                    <Table className="min-w-[900px]">
-                        <TableHeader className="bg-[#FBFCFE]">
-                            <TableRow>
-                                <TableHead className="w-64">Actions</TableHead>
-                                {roles.map((role) => (
-                                    <TableHead key={role} className="text-center">
-                                        {role}
-                                    </TableHead>
-                                ))}
+
+            <Table>
+                <TableHeader className="bg-[#FBFCFE]">
+                    <TableRow>
+                        <TableHead className="w-64">Actions</TableHead>
+                        {roles.map((role) => (
+                            <TableHead key={role} className="text-center">
+                                {role}
+                            </TableHead>
+                        ))}
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {permissions.map((group) => (
+                        <>
+                            <TableRow key={group.section} className="bg-muted">
+                                <TableCell colSpan={roles.length + 1} className="font-semibold">
+                                    {group.section}
+                                </TableCell>
                             </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {permissions.map((group) => (
-                                <>
-                                    <TableRow key={group.section} className="bg-muted">
-                                        <TableCell colSpan={roles.length + 1} className="font-semibold">
-                                            {group.section}
+                            {group.actions.map((action) => (
+                                <TableRow key={action}>
+                                    <TableCell>{action}</TableCell>
+                                    {roles.map((role) => (
+                                        <TableCell key={role} className="text-center">
+                                            <Checkbox
+                                                checked={permissionMatrix[action][role]}
+                                                onCheckedChange={() => togglePermission(action, role)}
+                                            />
                                         </TableCell>
-                                    </TableRow>
-                                    {group.actions.map((action) => (
-                                        <TableRow key={action}>
-                                            <TableCell>{action}</TableCell>
-                                            {roles.map((role) => (
-                                                <TableCell key={role} className="text-center">
-                                                    <Checkbox
-                                                        checked={permissionMatrix[action][role]}
-                                                        onCheckedChange={() => togglePermission(action, role)}
-                                                    />
-                                                </TableCell>
-                                            ))}
-                                        </TableRow>
                                     ))}
-                                </>
+                                </TableRow>
                             ))}
-                        </TableBody>
-                    </Table>
-                </ScrollArea>
-            </div>
+                        </>
+                    ))}
+                </TableBody>
+            </Table>
+
             <div className="flex justify-end  w-full">
                 <Button>
-                    Save
+                    Save Changes
                 </Button>
             </div>
         </>
