@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Pencil, Plus, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,7 +16,6 @@ import { TypographyH3 } from "@/components/custom/Typography";
 
 export default function Tags() {
     const [tags, setTags] = useState(["Urgent", "Follow-Up", "VIP"]);
-    const [dialogOpen, setDialogOpen] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
 
     const handleSave = (newTag) => {
@@ -25,17 +26,7 @@ export default function Tags() {
         } else {
             setTags([...tags, newTag]);
         }
-        setDialogOpen(false);
         setEditingIndex(null);
-    };
-
-    const handleEdit = (index) => {
-        setEditingIndex(index);
-        setDialogOpen(true);
-    };
-
-    const handleDelete = (index) => {
-        setTags(tags.filter((_, i) => i !== index));
     };
 
     const currentEditValue = editingIndex !== null ? tags[editingIndex] : "";
@@ -44,15 +35,16 @@ export default function Tags() {
         <div className="space-y-4">
             <div className="flex justify-between items-center">
                 <TypographyH3>Tags Details</TypographyH3>
-                <Button
-                    onClick={() => {
-                        setEditingIndex(null); // Clear editing index
-                        setDialogOpen(true);
-                    }}
-                >
-                    <Plus />
-                    Create
-                </Button>
+                <TagsDialog
+                    onSave={handleSave}
+                    defaultValue=""
+                    trigger={
+                        <Button>
+                            <Plus />
+                            Create
+                        </Button>
+                    }
+                />
             </div>
 
             <Table>
@@ -67,17 +59,24 @@ export default function Tags() {
                         <TableRow key={index}>
                             <TableCell className="text-center">{tag}</TableCell>
                             <TableCell className="text-center space-x-2">
+                                <TagsDialog
+                                    onSave={(value) => {
+                                        setEditingIndex(index);
+                                        handleSave(value);
+                                    }}
+                                    defaultValue={tag}
+                                    trigger={
+                                        <Button variant="ghost" size="icon">
+                                            <Pencil className="w-4 h-4" />
+                                        </Button>
+                                    }
+                                />
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    onClick={() => handleEdit(index)}
-                                >
-                                    <Pencil className="w-4 h-4" />
-                                </Button>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    onClick={() => handleDelete(index)}
+                                    onClick={() =>
+                                        setTags(tags.filter((_, i) => i !== index))
+                                    }
                                 >
                                     <Trash className="w-4 h-4 text-red-500" />
                                 </Button>
@@ -86,13 +85,6 @@ export default function Tags() {
                     ))}
                 </TableBody>
             </Table>
-
-            <TagsDialog
-                open={dialogOpen}
-                setOpen={setDialogOpen}
-                defaultValue={currentEditValue}
-                onSave={handleSave}
-            />
         </div>
     );
 }

@@ -13,7 +13,7 @@ export default function FinanceRoutes() {
             <Route path="purchases/*" element={<PurchasesTabs />}>
                 <Route index element={<Bills />} />
                 <Route path="bills" element={<Bills />} />
-                <Route path="reimbursement" element={<Reimbursements />} />
+                <Route path="reimbursements" element={<Reimbursements />} />
             </Route>
         </Routes>
     );

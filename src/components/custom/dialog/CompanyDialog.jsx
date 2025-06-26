@@ -7,6 +7,8 @@ import {
     DialogHeader,
     DialogTitle,
     DialogFooter,
+    DialogTrigger,
+    DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -15,7 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { TypographyH3 } from "../Typography";
 import { Map, Marker } from "pigeon-maps";
 
-export default function CompanyDialog({ open, setOpen, onSave, defaultData = {} }) {
+export default function CompanyDialog({ trigger, onSave, defaultData = {} }) {
     const [company, setCompany] = useState({
         name: "",
         address: "",
@@ -25,9 +27,9 @@ export default function CompanyDialog({ open, setOpen, onSave, defaultData = {} 
         longitude: "",
     });
 
-    // Set default values when editing
+    // Populate default data when dialog opens
     useEffect(() => {
-        if (defaultData && open) {
+        if (defaultData) {
             setCompany({
                 name: defaultData.name || "",
                 address: defaultData.address || "",
@@ -37,7 +39,7 @@ export default function CompanyDialog({ open, setOpen, onSave, defaultData = {} 
                 longitude: defaultData.longitude || "",
             });
         }
-    }, [defaultData, open]);
+    }, [defaultData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -61,17 +63,19 @@ export default function CompanyDialog({ open, setOpen, onSave, defaultData = {} 
     const handleSave = () => {
         if (company.name.trim() && company.address.trim()) {
             onSave(company);
-            setOpen(false);
         } else {
             alert("Please fill in the required fields");
         }
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog>
+            <DialogTrigger asChild>{trigger}</DialogTrigger>
             <DialogContent className="sm:max-w-5xl">
                 <DialogHeader>
-                    <TypographyH3 className="text-start">{defaultData ? "Edit Company" : "Add Company"}</TypographyH3>
+                    <TypographyH3 className="text-start">
+                        {defaultData?.name ? "Edit Company" : "Add Company"}
+                    </TypographyH3>
                     <DialogTitle />
                 </DialogHeader>
 
@@ -137,40 +141,39 @@ export default function CompanyDialog({ open, setOpen, onSave, defaultData = {} 
                         </div>
 
                         <div className="grid gap-2">
-                            <div className="grid gap-2">
-                                <Label>Latitude</Label>
-                                <Input
-                                    name="latitude"
-                                    placeholder="Latitude"
-                                    value={company.latitude}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label>Longitude</Label>
-                                <Input
-                                    name="longitude"
-                                    placeholder="Longitude"
-                                    value={company.longitude}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <Label>Latitude</Label>
+                            <Input
+                                name="latitude"
+                                placeholder="Latitude"
+                                value={company.latitude}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label>Longitude</Label>
+                            <Input
+                                name="longitude"
+                                placeholder="Longitude"
+                                value={company.longitude}
+                                onChange={handleChange}
+                            />
                         </div>
 
                         <div className="grid gap-2">
                             <Button className="w-full bg-sky-400 hover:bg-sky-500" onClick={handleGetLocation}>
                                 Get Location
                             </Button>
-                            <Button variant="destructive" onClick={() => setOpen(false)}>
-                                Cancel
-                            </Button>
-                            <Button onClick={handleSave}>Save</Button>
                         </div>
                     </div>
                 </div>
 
                 <DialogFooter className="mt-6 flex justify-end gap-3">
-
+                    <DialogClose asChild>
+                        <Button variant="destructive">Cancel</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                        <Button onClick={handleSave}>Save</Button>
+                    </DialogClose>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

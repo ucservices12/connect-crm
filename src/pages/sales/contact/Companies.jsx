@@ -1,43 +1,47 @@
 import { useState } from "react";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
 import CompanyDialog from "@/components/custom/dialog/CompanyDialog";
 import { TypographyH3 } from "@/components/custom/Typography";
 
 export default function Companies() {
-    const [dialogOpen, setDialogOpen] = useState(false);
     const [companies, setCompanies] = useState([]);
-    const [editingIndex, setEditingIndex] = useState(null);
+    const [selectedCompany, setSelectedCompany] = useState(null);
 
     const handleSave = (company) => {
-        if (editingIndex !== null) {
+        if (selectedCompany?.index !== undefined) {
             const updated = [...companies];
-            updated[editingIndex] = company;
+            updated[selectedCompany.index] = company;
             setCompanies(updated);
         } else {
             setCompanies([...companies, company]);
         }
-        setDialogOpen(false);
-        setEditingIndex(null);
-    };
-
-    const handleEdit = (index) => {
-        setEditingIndex(index);
-        setDialogOpen(true);
-    };
-
-    const handleDelete = (index) => {
-        setCompanies(companies.filter((_, i) => i !== index));
+        setSelectedCompany(null);
     };
 
     return (
         <div className="space-y-4">
             <div className="flex justify-between items-center">
                 <TypographyH3>Companies Details</TypographyH3>
-                <Button onClick={() => setDialogOpen(true)}>
-                    <Plus /> Create
-                </Button>
+
+                {/* Create Company */}
+                <CompanyDialog
+                    trigger={
+                        <Button>
+                            <Plus/> Create
+                        </Button>
+                    }
+                    onSave={handleSave}
+                    defaultData={null}
+                />
             </div>
 
             <Table>
@@ -60,10 +64,29 @@ export default function Companies() {
                             <TableCell>{company.latitude}</TableCell>
                             <TableCell>{company.longitude}</TableCell>
                             <TableCell className="text-right space-x-2">
-                                <Button variant="ghost" size="icon" onClick={() => handleEdit(i)}>
-                                    <Pencil className="w-4 h-4" />
-                                </Button>
-                                <Button variant="ghost" size="icon" onClick={() => handleDelete(i)}>
+                                {/* Edit Company */}
+                                <CompanyDialog
+                                    trigger={
+                                        <Button variant="ghost" size="icon">
+                                            <Pencil className="w-4 h-4" />
+                                        </Button>
+                                    }
+                                    onSave={(updated) => {
+                                        const list = [...companies];
+                                        list[i] = updated;
+                                        setCompanies(list);
+                                    }}
+                                    defaultData={company}
+                                />
+
+                                {/* Delete */}
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() =>
+                                        setCompanies(companies.filter((_, idx) => idx !== i))
+                                    }
+                                >
                                     <Trash2 className="w-4 h-4 text-red-500" />
                                 </Button>
                             </TableCell>
@@ -71,13 +94,6 @@ export default function Companies() {
                     ))}
                 </TableBody>
             </Table>
-
-            <CompanyDialog
-                open={dialogOpen}
-                setOpen={setDialogOpen}
-                defaultData={editingIndex !== null ? companies[editingIndex] : null}
-                onSave={handleSave}
-            />
         </div>
     );
 }

@@ -1,8 +1,13 @@
+"use client"
+
 import {
     Dialog,
     DialogContent,
     DialogHeader,
     DialogTitle,
+    DialogFooter,
+    DialogTrigger,
+    DialogClose,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,24 +15,24 @@ import { Button } from "@/components/ui/button"
 import { TypographyH3 } from "@/components/custom/Typography"
 import { useEffect, useState } from "react"
 
-export default function IndustryDialog({ open, onClose, onSave, initialValue = "" }) {
+export default function IndustryDialog({ trigger, onSave, initialValue = "" }) {
     const [industry, setIndustry] = useState("")
 
     useEffect(() => {
-        if (open) {
-            setIndustry(initialValue)
-        }
-    }, [open, initialValue])
+        setIndustry(initialValue || "")
+    }, [initialValue])
 
     const handleSave = () => {
         if (industry.trim()) {
-            onSave(industry)
+            onSave(industry.trim())
             setIndustry("")
+            document.getElementById("industry-dialog-close")?.click()
         }
     }
 
     return (
-        <Dialog open={open} onOpenChange={onClose}>
+        <Dialog>
+            <DialogTrigger asChild>{trigger}</DialogTrigger>
             <DialogContent className="sm:max-w-2xl">
                 <DialogHeader>
                     <TypographyH3 className="text-start">
@@ -48,12 +53,15 @@ export default function IndustryDialog({ open, onClose, onSave, initialValue = "
                         </div>
                     </div>
                     <div className="md:col-span-4 grid gap-2">
+                        <DialogClose asChild>
+                            <Button variant="destructive" id="industry-dialog-close">
+                                Cancel
+                            </Button>
+                        </DialogClose>
                         <Button onClick={handleSave}>Save</Button>
-                        <Button variant="destructive" onClick={() => onClose(false)}>
-                            Cancel
-                        </Button>
                     </div>
                 </div>
+                <DialogFooter />
             </DialogContent>
         </Dialog>
     )

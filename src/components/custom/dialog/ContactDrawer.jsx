@@ -133,13 +133,18 @@ export function ContactDrawer({ open, onClose }) {
                         <div className="grid gap-2">
                             <div className="flex justify-between items-center">
                                 <Label>Tags</Label>
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() => setOpenTagsDialog(true)}
-                                >
-                                    <Plus size={18} />
-                                </Button>
+                                <TagsDialog
+                                    onSave={handleTagsDialogSave}
+                                    defaultValue=""
+                                    trigger={
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                        >
+                                            <Plus size={18} />
+                                        </Button>
+                                    }
+                                />
                             </div>
                             <Input
                                 placeholder="Add a tag and press Enter"
@@ -182,13 +187,19 @@ export function ContactDrawer({ open, onClose }) {
                             <div className="grid gap-2">
                                 <div className="flex justify-between items-center">
                                     <Label>Company</Label>
-                                    <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        onClick={() => setOpenCompanyDialog(true)}
-                                    >
-                                        <Plus size={18} />
-                                    </Button>
+                                    {/* Create Company */}
+                                    <CompanyDialog
+                                        trigger={
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                            >
+                                                <Plus size={18} />
+                                            </Button>
+                                        }
+                                        onSave={(company) => handleChange("company", company.name)}
+                                        defaultData={null}
+                                    />
                                 </div>
                                 <Select
                                     value={fields.company}
@@ -252,13 +263,18 @@ export function ContactDrawer({ open, onClose }) {
                                     <div className="flex justify-between items-center">
                                         <Label>{label}</Label>
                                         {hasDialog && (
-                                            <Button
-                                                variant="ghost"
-                                                size="sm"
-                                                onClick={() => setOpenIndustryDialog(true)}
-                                            >
-                                                <Plus size={18} />
-                                            </Button>
+                                            <IndustryDialog
+                                                trigger={
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="sm"
+                                                    >
+                                                        <Plus size={18} />
+                                                    </Button>
+                                                }
+                                                onSave={(industry) => handleChange("industry", industry)}
+                                                initialValue=""
+                                            />
                                         )}
                                     </div>
                                     <Select
@@ -298,27 +314,6 @@ export function ContactDrawer({ open, onClose }) {
                 </Button>
                 <Button onClick={handleSave}>Save Contact</Button>
             </div>
-
-            {/* Dialogs */}
-            <CompanyDialog
-                open={openCompanyDialog}
-                setOpen={setOpenCompanyDialog}
-                defaultData={null}
-                onSave={(company) => handleChange("company", company.name)}
-            />
-
-            <TagsDialog
-                open={openTagsDialog}
-                setOpen={setOpenTagsDialog}
-                defaultValue=""
-                onSave={handleTagsDialogSave}
-            />
-
-            <IndustryDialog
-                open={openIndustryDialog}
-                onClose={() => setOpenIndustryDialog(false)}
-                onSave={(industry) => handleChange("industry", industry)}
-            />
         </div>
     );
 }

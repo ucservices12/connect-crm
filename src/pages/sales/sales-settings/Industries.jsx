@@ -1,4 +1,5 @@
-// components/pages/IndustryTable.tsx
+"use client"
+
 import {
     Table,
     TableBody,
@@ -14,50 +15,34 @@ import { TypographyH3 } from "@/components/custom/Typography"
 import IndustryDialog from "@/components/custom/dialog/IndustryDialog"
 
 export default function Industries() {
-    const [openDialog, setOpenDialog] = useState(false)
     const [industries, setIndustries] = useState([])
-    const [editIndex, setEditIndex] = useState(null)
 
-    const handleAddOrEditIndustry = (name) => {
-        if (editIndex !== null) {
-            // Editing existing industry
+    const handleSave = (name, index = null) => {
+        if (index !== null) {
             const updated = [...industries]
-            updated[editIndex] = name
+            updated[index] = name
             setIndustries(updated)
-            setEditIndex(null)
         } else {
-            // Adding new industry
-            setIndustries((prev) => [...prev, name])
+            setIndustries([...industries, name])
         }
-        setOpenDialog(false)
-    }
-
-    const handleEdit = (index) => {
-        setEditIndex(index)
-        setOpenDialog(true)
-    }
-
-    const handleDelete = (index) => {
-        setIndustries((prev) => prev.filter((_, i) => i !== index))
-    }
-
-    const getInitialIndustry = () => {
-        return editIndex !== null ? industries[editIndex] : ""
     }
 
     return (
         <div>
             <div className="flex justify-between mb-4">
                 <TypographyH3>Industries</TypographyH3>
-                <Button
-                    onClick={() => {
-                        setEditIndex(null)
-                        setOpenDialog(true)
-                    }}
-                >
-                    <Plus />
-                    Create
-                </Button>
+
+                {/* Create Industry */}
+                <IndustryDialog
+                    trigger={
+                        <Button>
+                            <Plus />
+                            Create
+                        </Button>
+                    }
+                    onSave={(name) => handleSave(name)}
+                    initialValue=""
+                />
             </div>
 
             <Table>
@@ -72,33 +57,35 @@ export default function Industries() {
                         <TableRow key={index}>
                             <TableCell className="text-center">{industry}</TableCell>
                             <TableCell className="text-center space-x-2">
-                                <Button variant="ghost" size="icon" onClick={() => handleEdit(index)}>
-                                    <Pencil />
-                                </Button>
+                                {/* Edit Button with Dialog */}
+                                <IndustryDialog
+                                    trigger={
+                                        <Button variant="ghost" size="icon">
+                                            <Pencil className="w-4 h-4" />
+                                        </Button>
+                                    }
+                                    onSave={(name) => handleSave(name, index)}
+                                    initialValue={industry}
+                                />
+
+                                {/* Delete Button */}
                                 <Button
                                     variant="ghost"
                                     size="icon"
                                     className="text-red-600"
-                                    onClick={() => handleDelete(index)}
+                                    onClick={() =>
+                                        setIndustries((prev) =>
+                                            prev.filter((_, i) => i !== index)
+                                        )
+                                    }
                                 >
-                                    <Trash />
+                                    <Trash className="w-4 h-4" />
                                 </Button>
                             </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
-
-            {/* Dialog to create or edit industry */}
-            <IndustryDialog
-                open={openDialog}
-                onClose={() => {
-                    setOpenDialog(false)
-                    setEditIndex(null)
-                }}
-                onSave={handleAddOrEditIndustry}
-                initialValue={getInitialIndustry()}
-            />
         </div>
     )
 }
