@@ -40,6 +40,17 @@ export const purchasesTabLinks = [
   { label: "Reimbursements", href: "/finance/purchases/reimbursements" },
 ]
 
+export const incomeTabLinks = [
+  { label: "Income", href: "/finance/income" },
+  { label: "Invoices", href: "/finance/income/invoices" },
+]
+
+export const reportsTabLinks = [
+  { label: "Profit Loss", href: "/finance/reports/profit-loss" },
+  { label: "Cash Flow", href: "/finance/reports/cash-flow" },
+  { label: "Balance Sheet", href: "/finance/reports/balance-sheet" },
+]
+
 // sales
 export const salesCotactTabLinks = [
   { label: "Contact List", href: "/contacts" },

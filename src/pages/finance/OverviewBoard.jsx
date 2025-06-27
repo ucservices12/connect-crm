@@ -1,24 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { TrendingUp, RefreshCcw } from "lucide-react";
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
-import { TypographyH1, TypographyH3 } from "../../components/custom/Typography";
-import { Select } from "@/components/ui/select";
-import {
-    SelectTrigger,
-    SelectContent,
-    SelectItem,
-    SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+import { TypographyH1, TypographyH3 } from "@/components/custom/Typography";
+import { FilterControls } from "@/components/FilterControls"
 
 import {
     PieChart as MUIPieChart,
@@ -75,61 +63,15 @@ export default function OverviewBoard() {
             <TypographyH1>Overview</TypographyH1>
 
             {/* Filters */}
-            <div className="grid sm:grid-cols-3 gap-3 sm:gap-8">
-                <div>
-                    <label className="text-sm font-medium">Financial Year</label>
-                    <Select value={year} onValueChange={setYear}>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Year" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {["2025", "2024", "2023"].map((y) => (
-                                <SelectItem key={y} value={y}>
-                                    {y}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-
-                <div>
-                    <label className="text-sm font-medium">Start Month</label>
-                    <Select value={startMonth} onValueChange={setStartMonth}>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Start Month" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {["Jan", "Feb", "Mar", "Apr", "May", "Jun"].map((m) => (
-                                <SelectItem key={m} value={m}>
-                                    {m}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-
-                <div className="flex gap-3 w-full">
-                    <div className="flex-1">
-                        <label className="text-sm font-medium">End Month</label>
-                        <Select value={endMonth} onValueChange={setEndMonth}>
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder="End Month" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {["Jan", "Feb", "Mar", "Apr", "May", "Jun"].map((m) => (
-                                    <SelectItem key={m} value={m}>
-                                        {m}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                    </div>
-
-                    <Button onClick={handleRefresh} size="icon" className="mt-6">
-                        <RefreshCcw />
-                    </Button>
-                </div>
-            </div>
+            <FilterControls
+                year={year}
+                setYear={setYear}
+                startMonth={startMonth}
+                setStartMonth={setStartMonth}
+                endMonth={endMonth}
+                setEndMonth={setEndMonth}
+                handleRefresh={handleRefresh}
+            />
 
             {/* Charts */}
             <div className="grid grid-cols-1 gap-8">

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/table";
 import { TypographyH3 } from "@/components/custom/Typography";
 import AddBillDialog from "@/components/custom/dialog/AddBillDialog";
-import AddPaymentDialog from "../../../components/custom/dialog/AddPaymentDialog";
+import AddPaymentDialog from "@/components/custom/dialog/AddPaymentDialog";
 
 const mockBills = [
     {

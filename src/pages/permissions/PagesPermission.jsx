@@ -23,6 +23,13 @@ import {
     ListChecks,
     Bot,
     Target,
+    BadgeIndianRupee,
+    TicketsPlane,
+    Settings,
+    HandCoins,
+    CirclePercent,
+    ChartSpline,
+    Kanban,
 } from "lucide-react"
 
 // Subroute meta: icon and url
@@ -36,7 +43,7 @@ export const subRouteMeta = {
     "Website Pages": { icon: GlobeIcon, url: "/employee/blogs" },
     Chat: { icon: MessageCircleIcon, url: "/employee/chat" },
     Calendar: { icon: CalendarIcon, url: "/employee/calendar/leaves" },
-    Settings: { icon: Settings2Icon, url: "/employee/settings/profile" },
+    Settings: { icon: Settings, url: "/employee/settings/profile" },
     Attendance: { icon: UserCheckIcon, url: "/employee/attendance" },
     Projects: { icon: Target, url: "/projects" },
     "My Courses": { icon: BookOpen, url: "/learning/mycourses" },
@@ -47,13 +54,13 @@ export const subRouteMeta = {
     Jobs: { icon: BriefcaseIcon, url: "/hiring/jobs" },
     Candidates: { icon: UserPlusIcon, url: "/hiring/candidates" },
     "Question Papers": { icon: FileQuestion, url: "/hiring/question-papers" },
-    "Finance Board": { icon: DollarSign, url: "/finance/board" },
+    "Finance Board": { icon: HandCoins, url: "/finance/board" },
     Transactions: { icon: CreditCard, url: "/finance/transactions" },
     Payrolls: { icon: Wallet, url: "/finance/payrolls" },
     Purchases: { icon: ShoppingCart, url: "/finance/purchases" },
-    Income: { icon: DollarSign, url: "/finance/income" },
-    Reports: { icon: BarChart, url: "/finance/reports/profit-loss" },
-    Setting: { icon: BarChart, url: "/finance/reports/settings" },
+    Income: { icon: BadgeIndianRupee, url: "/finance/income" },
+    Reports: { icon: TicketsPlane, url: "/finance/reports/profit-loss" },
+    Setting: { icon: Settings, url: "/finance/reports/settings" },
     Requests: { icon: ListChecks, url: "/requests" },
     Marketing: { icon: GlobeIcon, url: "/marketing" },
     Subscribers: { icon: Users2, url: "/subscribers" },
@@ -61,11 +68,11 @@ export const subRouteMeta = {
     Scheduling: { icon: CalendarIcon, url: "/scheduling" },
     "Social Posts": { icon: MessageCircleIcon, url: "/social-posts" },
     Blogs: { icon: FileTextIcon, url: "/blogs" },
-    "Sales Board": { icon: DollarSign, url: "/sales-board" },
+    "Sales Board": { icon: Kanban, url: "/sales-board" },
     Contacts: { icon: Users2, url: "/contacts" },
     "My Things": { icon: Bot, url: "/my-things" },
-    "Current Sales": { icon: DollarSign, url: "/current-sales" },
-    "Future Sales": { icon: DollarSign, url: "/future-sales" },
+    "Current Sales": { icon: CirclePercent, url: "/current-sales" },
+    "Future Sales": { icon: ChartSpline, url: "/future-sales" },
     "Sales Settings": { icon: Settings2Icon, url: "/sales-settings" },
     "Website Stuff": { icon: GlobeIcon, url: "/website-stuff" },
     // Add more as needed
@@ -86,7 +93,7 @@ export const roleAccess = {
         "employee", "hiring", "learning", "administration"
     ],
     sales: [
-        "sales", "employee"
+        "sales", "employee",
     ],
     hr: [
         "hiring", "employee"

@@ -72,7 +72,7 @@ export default function Reimbursements() {
               </TableCell>
               <TableCell>
                 {r.status === "Paid" ? (
-                  <Button size="sm">
+                  <Button size="xs">
                     <IndianRupee />
                     View
                   </Button>
@@ -82,7 +82,7 @@ export default function Reimbursements() {
                       amount: r,
                     }}
                     trigger={
-                      <Button size="sm">
+                      <Button size="xs">
                         <IndianRupee />
                         Record
                       </Button>
