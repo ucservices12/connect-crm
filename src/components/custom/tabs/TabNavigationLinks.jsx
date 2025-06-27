@@ -51,6 +51,12 @@ export const reportsTabLinks = [
   { label: "Balance Sheet", href: "/finance/reports/balance-sheet" },
 ]
 
+export const financeSettingsTabLinks = [
+  { label: "Setting", href: "/finance/settings" },
+  { label: "Product & Services", href: "/finance/settings/products&services" },
+  { label: "Venders", href: "/finance/settings/vendors" },
+]
+
 // sales
 export const salesCotactTabLinks = [
   { label: "Contact List", href: "/contacts" },

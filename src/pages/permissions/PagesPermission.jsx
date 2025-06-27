@@ -60,7 +60,7 @@ export const subRouteMeta = {
     Purchases: { icon: ShoppingCart, url: "/finance/purchases" },
     Income: { icon: BadgeIndianRupee, url: "/finance/income" },
     Reports: { icon: TicketsPlane, url: "/finance/reports/profit-loss" },
-    Setting: { icon: Settings, url: "/finance/reports/settings" },
+    Setting: { icon: Settings, url: "/finance/settings" },
     Requests: { icon: ListChecks, url: "/requests" },
     Marketing: { icon: GlobeIcon, url: "/marketing" },
     Subscribers: { icon: Users2, url: "/subscribers" },

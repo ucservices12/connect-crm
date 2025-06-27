@@ -8,8 +8,11 @@ import Invoices from "@/pages/finance/Income/Invoices";
 import ProfitLoss from "@/pages/finance/reports/ProfitLoss";
 import CashFlow from "@/pages/finance/reports/CashFlow";
 import BalanceSheet from "@/pages/finance/reports/BalanceSheet";
+import FiscalYear from "@/pages/finance/settings/FiscalYear";
+import ProductService from "@/pages/sales/sales-settings/ProductService";
+import Vendors from "@/pages/finance/settings/Vendors";
 
-import { PurchasesTabs, IncomeTabs, ReportFinanceTabs } from "@/components/custom/tabs/Tabs";
+import { PurchasesTabs, IncomeTabs, ReportFinanceTabs, FinanceSettingsTabs } from "@/components/custom/tabs/Tabs";
 
 export default function FinanceRoutes() {
     return (
@@ -27,10 +30,14 @@ export default function FinanceRoutes() {
                 <Route path="invoices" element={<Invoices />} />
             </Route>
             <Route path="reports/*" element={<ReportFinanceTabs />}>
-                <Route index element={<Income />} />
                 <Route path="profit-loss" element={<ProfitLoss />} />
                 <Route path="cash-flow" element={<CashFlow />} />
                 <Route path="balance-sheet" element={<BalanceSheet />} />
+            </Route>
+            <Route path="settings/*" element={<FinanceSettingsTabs />}>
+                <Route path="" element={<FiscalYear />} />
+                <Route path="products&services" element={<ProductService />} />
+                <Route path="vendors" element={<Vendors />} />
             </Route>
         </Routes>
     );

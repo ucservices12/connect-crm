@@ -52,7 +52,6 @@ export default function AddProductDialog({ open, onClose, onAdd }) {
                         </div>
                     </div>
                 </div>
-
                 <DialogFooter />
             </DialogContent>
         </Dialog >

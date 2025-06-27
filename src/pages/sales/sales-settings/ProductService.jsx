@@ -72,7 +72,7 @@ export default function ProductService() {
                     <TableRow>
                         <TableHead>Product Name</TableHead>
                         <TableHead>Description</TableHead>
-                        <TableHead>Amount</TableHead>
+                        <TableHead>Price</TableHead>
                         <TableHead className="text-right">Action</TableHead>
                     </TableRow>
                 </TableHeader>
