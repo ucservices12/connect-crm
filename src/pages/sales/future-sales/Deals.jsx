@@ -1,12 +1,10 @@
-"use client";
-
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pencil, Trash, Plus } from "lucide-react";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import AddDealDialog from "../../../components/custom/dialog/AddDealDialog";
+import AddDealDialog from "@/components/custom/dialog/AddDealDialog";
 
 const initialDeals = [
     {
@@ -29,7 +27,7 @@ const initialDeals = [
     },
 ];
 
-export default function DealsPage() {
+export default function Deals() {
     const [deals, setDeals] = useState(initialDeals);
     const [search, setSearch] = useState("");
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -74,7 +72,7 @@ export default function DealsPage() {
                     className="max-w-sm"
                 />
                 <Button onClick={() => { setSelectedDeal(null); setDialogOpen(true); }}>
-                    <Plus/> Create
+                    <Plus /> Create
                 </Button>
             </div>
 

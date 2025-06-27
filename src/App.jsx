@@ -77,7 +77,8 @@ export default function App() {
               !route.path.startsWith("/future-sales") &&
               !route.path.startsWith("/sales-settings") &&
               !route.path.startsWith("/finance") &&
-              !route.path.startsWith("/sales-board")
+              !route.path.startsWith("/sales-board") &&
+              !route.path.startsWith("/my-things")
           )
           .map((route) => (
             <Route

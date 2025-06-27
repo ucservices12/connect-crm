@@ -7,6 +7,7 @@ import {
   salesCotactTabLinks,
   currentSalesTabLinks,
   futureSalesTabLinks,
+  salesMyThingsTabLinks,
   saleSettingTabLinks,
   purchasesTabLinks,
   incomeTabLinks,
@@ -100,6 +101,16 @@ export const FutureSalesTabs = () => {
     <>
       <TypographyH1>Future Sales</TypographyH1>
       <SettingsNav links={futureSalesTabLinks} />
+      <Outlet />
+    </>
+  );
+};
+
+export const MyThingsSalesTabs = () => {
+  return (
+    <>
+      <TypographyH1>My Things</TypographyH1>
+      <SettingsNav links={salesMyThingsTabLinks} />
       <Outlet />
     </>
   );

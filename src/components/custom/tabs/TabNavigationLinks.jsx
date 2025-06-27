@@ -65,6 +65,13 @@ export const salesCotactTabLinks = [
   { label: "Maps", href: "/contacts/maps" },
 ];
 
+export const salesMyThingsTabLinks = [
+  { label: "Tasks", href: "/my-things" },
+  { label: "Deals", href: "/my-things/deals" },
+  { label: "Meetting Slots", href: "/my-things/freeslots" },
+  { label: "Customers", href: "/my-things/customers" },
+]
+
 export const currentSalesTabLinks = [
   { label: "Payments", href: "/current-sales" },
   { label: "Statements", href: "/current-sales/statements" },

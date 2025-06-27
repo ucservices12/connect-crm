@@ -14,6 +14,10 @@ import Tags from "@/pages/sales/contact/Tags";
 import Companies from "@/pages/sales/contact/Companies";
 import Maps from "@/pages/sales/contact/Maps";
 
+// my things 
+import Tasks from "@/pages/sales/my-things/Tasks";
+import MeetingSlotes from "@/pages/sales/my-things/MeetingSlotes";
+
 // future sales
 import { FutureSalesEstimate } from "@/pages/sales/future-sales/FutureSalesEstimate";
 import Deals from "@/pages/sales/future-sales/Deals";
@@ -40,6 +44,7 @@ import {
     FutureSalesTabs,
     SellSettingsTabs,
     ContactSalesTabs,
+    MyThingsSalesTabs
 } from "@/components/custom/tabs/Tabs";
 
 export default function SalesRoutes() {
@@ -52,6 +57,13 @@ export default function SalesRoutes() {
                 <Route path="tags" element={<Tags />} />
                 <Route path="companies" element={<Companies />} />
                 <Route path="maps" element={<Maps />} />
+            </Route>
+
+            <Route path="my-things/*" element={<MyThingsSalesTabs />}>
+                <Route index element={<Tasks />} />
+                <Route path="deals" element={<Deals />} />
+                <Route path="freeslots" element={<MeetingSlotes />} />
+                <Route path="customers" element={<Customers />} />
             </Route>
 
             <Route path="current-sales/*" element={<CurrentSalesTabs />}>

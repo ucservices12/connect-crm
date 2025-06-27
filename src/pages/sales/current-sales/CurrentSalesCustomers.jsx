@@ -62,7 +62,7 @@ export function CurrentSalesCustomers() {
             setDialogOpen(true);
           }}
         >
-          <Plus className="w-4 h-4" />
+          <Plus />
           Create
         </Button>
       </div>
