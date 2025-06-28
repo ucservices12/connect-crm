@@ -29,11 +29,9 @@ import {
 } from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
 import { IoPersonSharp } from "react-icons/io5";
-import {
-    TypographyMuted,
-} from "../../../components/custom/Typography";
+import { TypographyMuted } from "@/components/custom/Typography";
 import { Link } from "react-router-dom";
-import { ContactDrawer } from "../../../components/custom/dialog/ContactDrawer";
+import { ContactDrawer } from "@/components/custom/dialog/ContactDrawer";
 
 // Data
 const contactTypes = [

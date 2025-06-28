@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "@/components/layout/Sidebar";
 import AuthLayout from "./layouts/AuthLayout";
 import { useAuth } from "@/hooks/useAuth";
@@ -12,7 +12,7 @@ import EmployeeRoutes from "@/routes/EmployeeRoutes";
 export function Page({ title }) {
   return (
     <h1 className="scroll-m-20 text-md sm:text-2xl font-bold tracking-tight text-balance">
-      {title} Comming soon....
+      {title} Coming soon...
     </h1>
   );
 }
@@ -38,9 +38,6 @@ export default function App() {
   const { isAuthenticated } = useAuth();
   const allRoutes = getAllRoutes(userPermissions);
 
-  const renderNestedRoutes = (routes) =>
-    routes.map((r) => <Route key={r.path} path={r.path} element={r.element} />);
-
   if (!isAuthenticated) {
     return (
       <Routes>
@@ -52,24 +49,28 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Sidebar />}>
-        <Route index element={<Page title="Home" />} />
+        {/* ✅ Redirect root route to employee dashboard */}
+        <Route index element={<Navigate to="/employee" replace />} />
 
-        {/* employee */}
+        {/* employee routes */}
         <Route path="employee/*" element={<EmployeeRoutes />} />
 
-        {/* All admin routes handled in AdminRoutes */}
+        {/* admin routes */}
         <Route path="admin/*" element={<AdminRoutes />} />
 
-        {/* All sales routes handled in SalesRoutes */}
+        {/* sales routes */}
         <Route path="/*" element={<SalesRoutes />} />
 
+        {/* finance routes */}
         <Route path="finance/*" element={<FinanceRoutes />} />
 
-        {/* Fallback Routes from Permission */}
+        {/* fallback "Coming Soon" routes based on permissions */}
         {allRoutes
           .filter(
             (route) =>
+              !route.path.startsWith("") &&
               !route.path.startsWith("/employee/settings/") &&
+              !route.path.startsWith("/employee/chat") &&
               !route.path.startsWith("/admin/settings/") &&
               !route.path.startsWith("/admin/") &&
               !route.path.startsWith("/contacts") &&
