@@ -8,7 +8,7 @@ import { TypographyH3 } from "@/components/custom/Typography"
 
 export default function ChatSidebar({ employeeList, selectedEmployee, onEmployeeClick, onNewInvite }) {
     return (
-        <div className="w-full sm:h-[86vh] sm:w-96 sm:border-r pr-3 space-y-4 overflow-y-auto bg-background transition-all duration-200">
+        <div className="w-full sm:h-[86vh] sm:w-96 sm:border-r sm:pr-3 space-y-4 overflow-y-auto bg-background transition-all duration-200">
             <div className="flex justify-between items-center">
                 <TypographyH3>Chats</TypographyH3>
                 <TooltipProvider delayDuration={0}>

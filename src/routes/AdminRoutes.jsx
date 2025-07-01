@@ -4,6 +4,10 @@ import EmployeeDirectory from "@/pages/admin/EmployeeDirectory";
 import RolePermissions from "@/pages/admin/RolePermissions";
 import Invitations from "@/pages/admin/Invitations";
 
+// attendace
+import Dashboard from "@/pages/admin/attendance/Dashboard";
+import AttendanceHistory from "@/pages/admin/attendance/AttendanceHistory";
+
 // org
 import OrganazationDetails from "@/pages/organazation/OrganazationDetails";
 import Branding from "@/pages/organazation/Branding";
@@ -20,7 +24,7 @@ import Domains from "@/pages/organazation/Domains";
 import DepartmentEmails from "@/pages/organazation/Emails";
 import { Page } from "@/App";
 
-import { AdminEmployeeManageTabs, OrganazationTabs } from "@/components/custom/tabs/Tabs";
+import { AdminEmployeeManageTabs, OrganazationTabs, AttendanceTabs } from "@/components/custom/tabs/Tabs";
 
 export default function AdminRoutes() {
     return (
@@ -29,6 +33,10 @@ export default function AdminRoutes() {
                 <Route path="members" element={<EmployeeDirectory />} />
                 <Route path="permissions" element={<RolePermissions />} />
                 <Route path="invitations" element={<Invitations />} />
+            </Route>
+            <Route path="attendance/*" element={<AttendanceTabs />}>
+                <Route index element={<Dashboard />} />
+                <Route path="history" element={<AttendanceHistory />} />
             </Route>
             <Route path="settings/*" element={<OrganazationTabs />}>
                 <Route index element={<OrganazationDetails />} />

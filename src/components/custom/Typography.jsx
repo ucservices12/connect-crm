@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 export function TypographyH1({ children, className }) {
     return (
-        <h1 className={cn("scroll-m-20 text-3xl sm:text-4xl font-bold tracking-tight text-balance", className)}>
+        <h1 className={cn("text-3xl sm:text-4xl font-bold tracking-tight text-balance", className)}>
             {children}
         </h1>
     );
@@ -18,7 +18,7 @@ export function TypographyH2({ children, className }) {
 
 export function TypographyH3({ children, className }) {
     return (
-        <h3 className={cn("scroll-m-20 sm:text-2xl text-lg font-semibold tracking-tight", className)}>
+        <h3 className={cn("sm:text-2xl text-lg font-semibold tracking-tight", className)}>
             {children}
         </h3>
     );
@@ -26,7 +26,7 @@ export function TypographyH3({ children, className }) {
 
 export function TypographyH4({ children, className }) {
     return (
-        <h4 className={cn("scroll-m-20 sm:text-xl text-md font-semibold tracking-tight", className)}>
+        <h4 className={cn("sm:text-xl text-md font-semibold tracking-tight", className)}>
             {children}
         </h4>
     );
@@ -42,7 +42,7 @@ export function TypographyH5({ children, className }) {
 
 export function TypographyH6({ children, className }) {
     return (
-        <h6 className={cn("scroll-m-20 sm:text-md text-sm font-semibold tracking-normal", className)}>
+        <h6 className={cn("sm:text-md text-sm font-semibold tracking-normal", className)}>
             {children}
         </h6>
     );

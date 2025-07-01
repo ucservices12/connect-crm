@@ -4,6 +4,7 @@ import {
   organazationTabLinks,
   employeeTablinks,
   adminEmployeeManageTabLinks,
+  attendanceTabLinks,
   salesCotactTabLinks,
   currentSalesTabLinks,
   futureSalesTabLinks,
@@ -41,6 +42,15 @@ export const AdminEmployeeManageTabs = () => {
     <>
       <TypographyH1>Teams</TypographyH1>
       <SettingsNav links={adminEmployeeManageTabLinks} />
+      <Outlet />
+    </>
+  )
+}
+
+export const AttendanceTabs = () => {
+  return (
+    <>
+      <SettingsNav links={attendanceTabLinks} />
       <Outlet />
     </>
   )
