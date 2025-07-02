@@ -49,7 +49,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Sidebar />}>
-        {/* ✅ Redirect root route to employee dashboard */}
+        {/* Redirect root route to employee dashboard */}
         <Route index element={<Navigate to="/employee" replace />} />
 
         {/* employee routes */}

@@ -56,44 +56,42 @@ export default function PagesControl({ role = "admin" }) {
     };
 
     return (
-        <div className="space-y-6">
-            <div className="rounded-md border sm:w-[500px] w-full">
-                <Table>
-                    <TableHeader className="bg-muted">
-                        <TableRow>
-                            <TableHead className="w-[200px]">Module</TableHead>
-                            <TableHead>Routes</TableHead>
+        <>
+            <Table className="sm:max-w-[400px] w-full">
+                <TableHeader className="bg-muted">
+                    <TableRow>
+                        <TableHead className="w-[200px]">Module</TableHead>
+                        <TableHead>Routes</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {Object.entries(routeGroups).map(([module, routes]) => (
+                        <TableRow key={module}>
+                            <TableCell className="font-medium">{capitalize(module)}</TableCell>
+                            <TableCell>
+                                <div className="grid gap-3">
+                                    {routes.map((route) => (
+                                        <label
+                                            key={route.url}
+                                            className="flex items-center gap-2 text-sm"
+                                        >
+                                            <Checkbox
+                                                checked={permissions[route.url]}
+                                                onCheckedChange={() => handleToggle(route.url)}
+                                            />
+                                            <span>{route.name}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </TableCell>
                         </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {Object.entries(routeGroups).map(([module, routes]) => (
-                            <TableRow key={module}>
-                                <TableCell className="font-medium">{capitalize(module)}</TableCell>
-                                <TableCell>
-                                    <div className="grid gap-3">
-                                        {routes.map((route) => (
-                                            <label
-                                                key={route.url}
-                                                className="flex items-center gap-2 text-sm"
-                                            >
-                                                <Checkbox
-                                                    checked={permissions[route.url]}
-                                                    onCheckedChange={() => handleToggle(route.url)}
-                                                />
-                                                <span>{route.name}</span>
-                                            </label>
-                                        ))}
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </div>
+                    ))}
+                </TableBody>
+            </Table>
             <div className="flex gap-4">
                 <Button onClick={handleSave}>Save</Button>
                 <Button variant="destructive">Delete</Button>
             </div>
-        </div>
+        </>
     );
 }

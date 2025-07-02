@@ -83,34 +83,32 @@ export default function DocumentList() {
             </div>
 
             {/* Document Table */}
-            <div className="rounded-md border">
-                <Table>
-                    <TableHeader className="bg-[#FBFCFE]">
-                        <TableRow>
-                            <TableHead>Sr.No.</TableHead>
-                            <TableHead>Label</TableHead>
-                            <TableHead className="text-right">Actions</TableHead>
+            <Table>
+                <TableHeader className="bg-[#FBFCFE]">
+                    <TableRow>
+                        <TableHead>Sr.No.</TableHead>
+                        <TableHead>Label</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {documents.map((doc, index) => (
+                        <TableRow key={doc.id}>
+                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>{doc.label}</TableCell>
+                            <TableCell className="text-right">
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => handleDelete(doc.id)}
+                                >
+                                    <Trash2 className="w-4 h-4 text-red-500" />
+                                </Button>
+                            </TableCell>
                         </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {documents.map((doc, index) => (
-                            <TableRow key={doc.id}>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell>{doc.label}</TableCell>
-                                <TableCell className="text-right">
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => handleDelete(doc.id)}
-                                    >
-                                        <Trash2 className="w-4 h-4 text-red-500" />
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </div>
+                    ))}
+                </TableBody>
+            </Table>
         </div>
     )
 }

@@ -72,33 +72,31 @@ function ConfigureLeaveType() {
     }
 
     return (
-        <div className="sm:w-[400px] space-y-6">
-            <div className="rounded-md border">
-                <Table>
-                    <TableHeader className="bg-[#FBFCFE]">
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => (
-                                    <TableHead key={header.id}>
-                                        {flexRender(header.column.columnDef.header, header.getContext())}
-                                    </TableHead>
-                                ))}
-                            </TableRow>
-                        ))}
-                    </TableHeader>
-                    <TableBody>
-                        {table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id}>
-                                {row.getVisibleCells().map((cell) => (
-                                    <TableCell key={cell.id}>
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </div>
+        <div className="space-y-6">
+            <Table className="sm:max-w-[400px]">
+                <TableHeader className="bg-[#FBFCFE]">
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <TableRow key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <TableHead key={header.id}>
+                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                </TableHead>
+                            ))}
+                        </TableRow>
+                    ))}
+                </TableHeader>
+                <TableBody>
+                    {table.getRowModel().rows.map((row) => (
+                        <TableRow key={row.id}>
+                            {row.getVisibleCells().map((cell) => (
+                                <TableCell key={cell.id}>
+                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </TableCell>
+                            ))}
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
             <Button onClick={handleSave}>Save</Button>
         </div>
     )

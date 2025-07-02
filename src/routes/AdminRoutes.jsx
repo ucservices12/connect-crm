@@ -22,9 +22,11 @@ import SkillSets from "@/pages/organazation/SkillSets";
 import LeaveManagement from "@/pages/organazation/LeaveManagement";
 import Domains from "@/pages/organazation/Domains";
 import DepartmentEmails from "@/pages/organazation/Emails";
+import { RecordFace } from "@/pages/organazation/RecordFace";
 import { Page } from "@/App";
 
 import { AdminEmployeeManageTabs, OrganazationTabs, AttendanceTabs } from "@/components/custom/tabs/Tabs";
+import ServiceRequest from "@/pages/admin/requests/ServiceRequest";
 
 export default function AdminRoutes() {
     return (
@@ -38,6 +40,9 @@ export default function AdminRoutes() {
                 <Route index element={<Dashboard />} />
                 <Route path="history" element={<AttendanceHistory />} />
             </Route>
+
+            <Route path="requests/*" element={<ServiceRequest />} />
+
             <Route path="settings/*" element={<OrganazationTabs />}>
                 <Route index element={<OrganazationDetails />} />
                 <Route path="branding" element={<Branding />} />
@@ -52,7 +57,7 @@ export default function AdminRoutes() {
                 <Route path="skill-sets" element={<SkillSets />} />
                 <Route path="leave-management" element={<LeaveManagement />} />
                 <Route path="domain" element={<Domains />} />
-                <Route path="record-face" element={<Page title="Record Face" />} />
+                <Route path="record-face" element={<RecordFace />} />
                 <Route path="email-settings" element={<DepartmentEmails />} />
             </Route>
             <Route path="inventory" element={<AssignInventary />} />

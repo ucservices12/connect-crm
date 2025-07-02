@@ -75,7 +75,7 @@ export const subRouteMeta = {
     Setting: { icon: Settings, url: "/finance/settings" },
 
     // Service Requests
-    Requests: { icon: ListChecks, url: "/requests" },
+    Requests: { icon: ListChecks, url: "/admin/requests" },
 
     // Marketing
     Marketing: { icon: GlobeIcon, url: "/marketing" },
