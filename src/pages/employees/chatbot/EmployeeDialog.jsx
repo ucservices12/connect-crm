@@ -45,7 +45,7 @@ export default function EmployeeDialog({ open, setOpen, users, selectedUsers, se
                     {
                         allSelected ?
                             <Button
-                                variant={allSelected ? "secondary" : "stone"}
+                                variant={allSelected ? "secondary" : "outline"}
                                 size="xs"
                                 onClick={handleSelectAll}
                             >
@@ -54,7 +54,7 @@ export default function EmployeeDialog({ open, setOpen, users, selectedUsers, se
                             </Button>
                             :
                             <Button
-                                variant={allSelected ? "secondary" : "stone"}
+                                variant={allSelected ? "secondary" : "outline"}
                                 size="xs"
                                 onClick={handleSelectAll}
                             >

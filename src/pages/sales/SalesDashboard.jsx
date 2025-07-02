@@ -48,7 +48,7 @@ export default function SalesDashboard() {
               key={filter}
               size="sm"
               className="w-full"
-              variant={selectedFilter === filter ? "default" : "stone"}
+              variant={selectedFilter === filter ? "default" : "outline"}
               onClick={() => setSelectedFilter(filter)}
             >
               {filter}
@@ -58,19 +58,19 @@ export default function SalesDashboard() {
 
         <div className="flex flex-wrap gap-2">
           <Link to="/current-sales/invoices/create" className="w-full">
-            <Button size="sm" variant="stone" className="w-full">
+            <Button size="sm" className="w-full">
               <Plus />
               New Invoice
             </Button>
           </Link>
           <Link to="/future-sales/estimates/create" className="w-full">
-            <Button size="sm" variant="stone" className="w-full">
+            <Button size="sm" className="w-full">
               <Plus />
               New Estimate
             </Button>
           </Link>
           <Link to="/current-sales/customers" className="w-full">
-            <Button size="sm" variant="stone" className="w-full">
+            <Button size="sm" className="w-full">
               <Plus />
               New Customers
             </Button>

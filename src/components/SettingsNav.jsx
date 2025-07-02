@@ -24,7 +24,7 @@ export default function SettingsNav({ links }) {
                         <Link to={link.href} key={link.href}>
                             <Button
                                 size="sm"
-                                variant={isActive ? "outline" : "stone"}
+                                variant={isActive ? "outline" : "outline"}
                                 className={`px-5 hover:bg-primary hover:text-white text-sm font-normal transition-none
                                     ${isActive ? "bg-primary text-white shadow-none" : "bg-transparent shadow-none"}
                                 `}
