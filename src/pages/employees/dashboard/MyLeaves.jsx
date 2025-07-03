@@ -1,23 +1,49 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
+import { TypographyH4 } from "@/components/custom/Typography";
 
 export function MyLeaves() {
     return (
         <Card>
-            <CardHeader className="text-sm font-medium">My Leaves</CardHeader>
-            <CardContent>
-                <table className="w-full text-sm mb-2">
-                    <thead>
-                        <tr><th>Leave Type</th><th>Used</th><th>Remaining</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Annual</td><td>0</td><td>0</td></tr>
-                        <tr><td>Sick</td><td>0</td><td>0</td></tr>
-                        <tr><td>C-off</td><td>0</td><td>0</td></tr>
-                    </tbody>
-                </table>
-                <Button className="w-full" variant="outline">Request Leave</Button>
-            </CardContent>
+            <TypographyH4>My Leaves</TypographyH4>
+            <Table className="border-none">
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>Leave Type</TableHead>
+                        <TableHead>Used</TableHead>
+                        <TableHead>Remaining</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>Annual</TableCell>
+                        <TableCell>0</TableCell>
+                        <TableCell>0</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Sick</TableCell>
+                        <TableCell>0</TableCell>
+                        <TableCell>0</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>C-off</TableCell>
+                        <TableCell>0</TableCell>
+                        <TableCell>0</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+            <Button className="w-full">
+                Request Leave
+            </Button>
         </Card>
     );
 }

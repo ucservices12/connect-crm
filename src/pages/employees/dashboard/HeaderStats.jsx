@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Target, Book, BarChart3, ClipboardList } from "lucide-react";
-import { TypographyH2, TypographyH3, TypographyMuted } from "../../../components/custom/Typography";
+import { TypographyH2, TypographyH3, TypographyMuted } from "@/components/custom/Typography";
 
 export function HeaderStats() {
     const stats = [
@@ -15,7 +15,7 @@ export function HeaderStats() {
             {stats.map((stat, index) => (
                 <Card key={index}>
                     <div className="flex gap-4">
-                        <div className="bg-primary w-11 h-11 p-3 flex justify-center items-center text-white rounded-full">{stat.icon}</div>
+                        <div className="bg-slate-200 w-11 h-11 p-3 flex justify-center items-center text-accent-foreground rounded-full">{stat.icon}</div>
                         <div className="grid gap-2">
                             <TypographyMuted>{stat?.label}</TypographyMuted>
                             <TypographyH2 className="text-primary">{stat?.value}</TypographyH2>

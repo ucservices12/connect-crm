@@ -1,13 +1,13 @@
 import { HeaderStats } from "./HeaderStats";
 import { MyTasks } from "./MyTasks";
-// import { MyGoals } from "./MyGoals";
-// import { MyCourses } from "./MyCourses";
+import { MyGoals } from "./MyGoals";
+import { MyCourses } from "./MyCourses";
 import { Timesheet } from "./Timesheet";
 import { MyLeaves } from "./MyLeaves";
 import { Birthdays } from "./Birthdays";
 import { TypographyH1 } from "../../../components/custom/Typography";
 import { TopTeamMembers } from "./TopTeamMembers";
-// import { LeavesThisWeek } from "./LeavesThisWeek";
+import { LeavesThisWeek } from "./LeavesThisWeek";
 
 export default function Dashboard() {
     return (
@@ -17,21 +17,21 @@ export default function Dashboard() {
 
             <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
                 <MyTasks />
-                {/* <MyGoals /> */}
+                <MyGoals />
             </div>
 
             <div className="grid md:grid-cols-3 gap-4 sm:gap-8">
-                {/* <MyCourses /> */}
+                <MyCourses />
                 <Timesheet />
                 <MyLeaves />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-8">
                 <Birthdays />
                 <TopTeamMembers />
+                <LeavesThisWeek />
             </div>
 
-            {/* <LeavesThisWeek /> */}
         </div>
     );
 }

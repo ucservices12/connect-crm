@@ -1,135 +1,95 @@
-"use client"
+"use client";
 
-import { ChevronDown } from "lucide-react"
-
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
 import {
     Card,
-    CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card"
+    CardContent,
+} from "@/components/ui/card";
 import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-} from "@/components/ui/command"
+    Select,
+    SelectTrigger,
+    SelectValue,
+    SelectContent,
+    SelectItem,
+} from "@/components/ui/select";
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
+    Table,
+    TableHeader,
+    TableRow,
+    TableHead,
+    TableBody,
+    TableCell,
+} from "@/components/ui/table";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { TypographyH4 } from "@/components/custom/Typography";
+import { useState } from "react";
 
-const teamMembers = [
+// Mock team data
+const teamData = [
     {
-        name: "Sofia Davis",
-        email: "m@example.com",
+        name: "Abhijeet",
+        completion: 0,
         avatar: "/avatars/01.png",
-        role: "Owner",
     },
     {
-        name: "Jackson Lee",
-        email: "p@example.com",
+        name: "Sneha",
+        completion: 60,
         avatar: "/avatars/02.png",
-        role: "Developer",
     },
     {
-        name: "Isabella Nguyen",
-        email: "i@example.com",
+        name: "Ravi",
+        completion: 90,
         avatar: "/avatars/03.png",
-        role: "Billing",
     },
-]
-
-const roles = [
-    {
-        name: "Viewer",
-        description: "Can view and comment.",
-    },
-    {
-        name: "Developer",
-        description: "Can view, comment and edit.",
-    },
-    {
-        name: "Billing",
-        description: "Can view, comment and manage billing.",
-    },
-    {
-        name: "Owner",
-        description: "Admin-level access to all resources.",
-    },
-]
+];
 
 export function TopTeamMembers() {
+    const [filter, setFilter] = useState("tasks");
+
     return (
         <Card>
-            <CardHeader>
-                <CardTitle>Team Members</CardTitle>
-                <CardDescription>
-                    Invite your team members to collaborate.
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-                {teamMembers.map((member) => (
-                    <div
-                        key={member.name}
-                        className="flex items-center justify-between gap-4"
-                    >
-                        <div className="flex items-center gap-4">
-                            <Avatar className="border">
-                                <AvatarImage src={member.avatar} alt="Image" />
-                                <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                            </Avatar>
-                            <div className="flex flex-col gap-0.5">
-                                <p className="text-sm leading-none font-medium">
+            <div className="flex flex-row justify-between items-center">
+                <TypographyH4>
+                    Top Team Members
+                </TypographyH4>
+                <Select value={filter} onValueChange={setFilter}>
+                    <SelectTrigger className="w-32 h-8">
+                        <SelectValue placeholder="By Tasks" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="tasks">By Tasks</SelectItem>
+                        <SelectItem value="goals">By Goals</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+
+            <div className="h-56 overflow-y-auto scrollbar-hide">
+                <Table className="border-none">
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-1/2">Name</TableHead>
+                            <TableHead className="text-right">Completion</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {teamData.map((member, index) => (
+                            <TableRow key={index}>
+                                <TableCell className="flex items-center gap-2 font-medium">
+                                    <Avatar className="h-6 w-6">
+                                        <AvatarImage src={member.avatar} />
+                                        <AvatarFallback>{member.name[0]}</AvatarFallback>
+                                    </Avatar>
                                     {member.name}
-                                </p>
-                                <p className="text-muted-foreground text-xs">{member.email}</p>
-                            </div>
-                        </div>
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="ml-auto shadow-none"
-                                >
-                                    {member.role} <ChevronDown />
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="p-0" align="end">
-                                <Command>
-                                    <CommandInput placeholder="Select role..." />
-                                    <CommandList>
-                                        <CommandEmpty>No roles found.</CommandEmpty>
-                                        <CommandGroup>
-                                            {roles.map((role) => (
-                                                <CommandItem key={role.name}>
-                                                    <div className="flex flex-col">
-                                                        <p className="text-sm font-medium">{role.name}</p>
-                                                        <p className="text-muted-foreground">
-                                                            {role.description}
-                                                        </p>
-                                                    </div>
-                                                </CommandItem>
-                                            ))}
-                                        </CommandGroup>
-                                    </CommandList>
-                                </Command>
-                            </PopoverContent>
-                        </Popover>
-                    </div>
-                ))}
-            </CardContent>
+                                </TableCell>
+                                <TableCell className="text-right text-muted-foreground">
+                                    {member.completion}%
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </div>
         </Card>
-    )
+    );
 }

@@ -3,7 +3,7 @@ import Webcam from "react-webcam";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import * as faceapi from "face-api.js";
-import { TypographyH3 } from "../../../components/custom/Typography";
+import { TypographyH3 } from "@/components/custom/Typography";
 import { Check, LogOut } from "lucide-react";
 
 export default function AttendanceCapture() {
