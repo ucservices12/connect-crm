@@ -4,6 +4,9 @@ import ChatWidget from "@/pages/employees/chatbot/ChatWidget";
 // /attendance
 import AttendanceCapture from "@/pages/employees/attendance/AttendanceCapture";
 
+// calender
+import LeaveOverview from "@/pages/employees/calender/LeavesOverview";
+
 // settings
 import { Routes, Route } from "react-router-dom";
 import Profile from "@/pages/employees/settings/Profile";
@@ -14,7 +17,7 @@ import Handbook from "@/pages/employees/settings/Handbook";
 import LeavesPolicy from "@/pages/employees/settings/LeavesPolicy";
 import Reimbursements from "@/pages/employees/settings/Reimbursements";
 
-import { EmployeeTabs } from "@/components/custom/tabs/Tabs";
+import { EmployeeTabs, EmployeeCalenderTabs } from "@/components/custom/tabs/Tabs";
 import Dashboard from "@/pages/employees/dashboard/Dashboard";
 
 export default function EmployeeRoutes() {
@@ -25,6 +28,11 @@ export default function EmployeeRoutes() {
             <Route path="chat" element={<ChatWidget />} />
 
             <Route path="attendance" element={<AttendanceCapture />} />
+
+            <Route path="calendar/*" element={<EmployeeCalenderTabs />}>
+                <Route path="leaves" element={<LeaveOverview />} />
+                {/* <Route path="c-offs" element={<Profile />} /> */}
+            </Route>
 
             <Route path="settings/*" element={<EmployeeTabs />}>
                 <Route path="profile" element={<Profile />} />

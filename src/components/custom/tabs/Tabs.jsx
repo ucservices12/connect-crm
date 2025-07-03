@@ -3,6 +3,7 @@ import { TypographyH1 } from "../Typography";
 import {
   organazationTabLinks,
   employeeTablinks,
+  employeeCalenderTablinks,
   adminEmployeeManageTabLinks,
   attendanceTabLinks,
   salesCotactTabLinks,
@@ -32,6 +33,16 @@ export const EmployeeTabs = () => {
     <>
       <TypographyH1>Profile Settings</TypographyH1>
       <SettingsNav links={employeeTablinks} />
+      <Outlet />
+    </>
+  );
+};
+
+export const EmployeeCalenderTabs = () => {
+  return (
+    <>
+      <TypographyH1>Profile Settings</TypographyH1>
+      <SettingsNav links={employeeCalenderTablinks} />
       <Outlet />
     </>
   );

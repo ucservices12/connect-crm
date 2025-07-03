@@ -39,6 +39,11 @@ export const employeeTablinks = [
   { label: "Reimbursements", href: "/employee/settings/reimbursements" },
 ];
 
+export const employeeCalenderTablinks = [
+  { label: "Leaves", href: "/employee/calendar/leaves" },
+  { label: "C-Offs", href: "/employee/calendar/c-offs" },
+]
+
 // finances 
 export const purchasesTabLinks = [
   { label: "Bills", href: "/finance/purchases" },
