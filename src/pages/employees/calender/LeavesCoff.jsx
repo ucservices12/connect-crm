@@ -20,7 +20,7 @@ import { CommentDialog } from "@/components/custom/dialog/CommentDialog"
 import { TypographyH3, TypographyMuted } from "@/components/custom/Typography"
 import LeaveManageTable from "./LeaveManageTable"
 
-export default function LeaveOverview() {
+export default function LeavesCoff() {
     const [dialogOpen, setDialogOpen] = useState(false)
     const [formData, setFormData] = useState({})
     const [isEdit, setIsEdit] = useState(false)
@@ -146,12 +146,11 @@ export default function LeaveOverview() {
         <div className="space-y-6">
             <div className="flex md:flex-row flex-col gap-4 sm:items-center justify-between">
                 <div>
-                    <TypographyH3>Leaves Overview</TypographyH3>
+                    <TypographyH3>C Off Overview</TypographyH3>
                     <TypographyMuted>A detailed overview of your leave balance and status.</TypographyMuted>
                 </div>
                 <div className="flex gap-2">
-                    <Button onClick={() => { setFormData({}); setIsEdit(false); setDialogOpen(true) }} variant="stone">Apply Leave</Button>
-                    <Button onClick={() => { setFormData({ type: 'C-OFF' }); setIsEdit(false); setDialogOpen(true) }} variant="stone">Apply COff</Button>
+                    <Button onClick={() => { setFormData({ type: 'C-OFF' }); setIsEdit(false); setDialogOpen(true) }} variant="stone">Request COff</Button>
                 </div>
             </div>
 
@@ -185,9 +184,7 @@ export default function LeaveOverview() {
                                 onCheckedChange={handleSelectAllLeaves}
                             />
                         </TableHead>
-                        <TableHead>Title</TableHead>
                         <TableHead>Details</TableHead>
-                        <TableHead>Type</TableHead>
                         <TableHead>Date</TableHead>
                         <TableHead>Quantity</TableHead>
                         <TableHead>Status</TableHead>
@@ -203,9 +200,7 @@ export default function LeaveOverview() {
                                     onCheckedChange={() => handleSelectLeave(idx)}
                                 />
                             </TableCell>
-                            <TableCell className="truncate max-w-[160px]">{record.title}</TableCell>
                             <TableCell className="truncate max-w-[240px]">{record.details}</TableCell>
-                            <TableCell><StatusBadge status={record.type} /></TableCell>
                             <TableCell>{record.date}</TableCell>
                             <TableCell>{record.quantity}</TableCell>
                             <TableCell><StatusBadge status={record.status} /></TableCell>

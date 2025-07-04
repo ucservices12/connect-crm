@@ -24,6 +24,13 @@ export const adminEmployeeManageTabLinks = [
   { label: "Invitations", href: "/admin/myteam/invitations" }
 ]
 
+// employee
+export const employeeGoalsTabLinks = [
+  { label: "Dashboard", href: "/employee/goals/dashboard" },
+  { label: "Goals", href: "/employee/goals/goals-list" },
+  { label: "Achievement", href: "/employee/goals/achievement" },
+]
+
 export const attendanceTabLinks = [
   { label: "Dashboard", href: "/admin/attendance" },
   { label: "Attendance History", href: "/admin/attendance/history" },
