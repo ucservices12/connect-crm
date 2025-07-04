@@ -41,7 +41,7 @@ export const EmployeeTabs = () => {
 export const EmployeeCalenderTabs = () => {
   return (
     <>
-      <TypographyH1>Profile Settings</TypographyH1>
+      <TypographyH1>Leave Management</TypographyH1>
       <SettingsNav links={employeeCalenderTablinks} />
       <Outlet />
     </>
