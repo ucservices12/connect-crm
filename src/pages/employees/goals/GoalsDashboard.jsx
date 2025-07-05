@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import {
     TypographyH2,
     TypographyH3,
-} from "../../../components/custom/Typography"
+} from "@/components/custom/Typography"
 import { RefreshCcw } from "lucide-react"
 
 const GoalData = [
@@ -83,7 +83,7 @@ export default function GoalsDashboard() {
                 <TypographyH3>Goal Status</TypographyH3>
                 <CardContent>
                     <ChartContainer
-                        config={chartConfig} // ✅ FIXED: prevent ChartStyle crash
+                        config={chartConfig}
                         className="[&_.recharts-pie-label-text]:fill-foreground mx-auto aspect-square pb-0"
                     >
                         <ResponsiveContainer>

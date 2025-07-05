@@ -8,10 +8,8 @@ import { BrowserRouter } from 'react-router-dom'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <ThemeProvider defaultTheme="Default" storageKey="vite-ui-theme">
-        <div className='custom-scrollbar '>
-          <App />
-        </div>
+      <ThemeProvider>
+        <App />
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,

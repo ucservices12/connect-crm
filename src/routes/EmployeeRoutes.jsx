@@ -1,3 +1,6 @@
+// tasks
+import TaskBoard from "@/pages/employees/tasks/dashboard/TaskBoard";
+
 // goals
 import GoalsDashboard from "@/pages/employees/goals/GoalsDashboard";
 import GoalsList from "@/pages/employees/goals/GoalsList";
@@ -31,6 +34,12 @@ export default function EmployeeRoutes() {
         <Routes>
             <Route path="" element={<Dashboard />} />
 
+            <Route path="tasks/*">
+                <Route index path="" element={<TaskBoard />} />
+                <Route index path="goals-list" element={<GoalsList />} />
+                <Route index path="achievement" element={<Achievement />} />
+            </Route>
+
             <Route path="goals/*" element={<EmployeeGoalsTabs />}>
                 <Route index path="dashboard" element={<GoalsDashboard />} />
                 <Route index path="goals-list" element={<GoalsList />} />
@@ -55,6 +64,6 @@ export default function EmployeeRoutes() {
                 <Route path="leaves-policy" element={<LeavesPolicy />} />
                 <Route path="reimbursements" element={<Reimbursements />} />
             </Route>
-        </Routes>
+        </Routes >
     );
 }

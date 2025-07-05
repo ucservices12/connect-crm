@@ -9,6 +9,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
@@ -29,6 +30,8 @@ export default function Navbar() {
                         Help
                     </Button>
                 </Link>
+
+                <ThemeToggle />
 
                 <div className="relative cursor-pointer">
                     <Bell size={22} className="text-gray-600" />
